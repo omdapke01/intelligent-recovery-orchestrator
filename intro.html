@@ -6,7 +6,7 @@
   <title>IRO — Intelligent Recovery Orchestrator | Cinematic Opening</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -17,13 +17,10 @@
 
     :root {
       --bg-dark: #040711;
-      --bg-card: rgba(11, 18, 33, 0.78);
-      --border-card: rgba(59, 130, 246, 0.18);
-      --border-card-hover: rgba(59, 130, 246, 0.4);
       --accent-blue: #3b82f6;
       --accent-cyan: #06b6d4;
       --accent-indigo: #6366f1;
-      --accent-purple: #8b5cf6;
+      --accent-purple: #a855f7;
       --accent-red: #ef4444;
       --accent-amber: #f59e0b;
       --accent-emerald: #10b981;
@@ -60,24 +57,40 @@
       width: 1920px;
       height: 1080px;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 30%, #0c152e 0%, #050914 60%, #020409 100%);
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.9);
+      background: radial-gradient(ellipse at 50% 48%, #0d152c 0%, #060a17 55%, #020409 100%);
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
       transform-origin: center center;
     }
 
-    /* Subtle Animated Ambient Grid */
+    /* Subtle Grid Background */
     .bg-grid {
       position: absolute;
       inset: 0;
-      background-size: 60px 60px;
+      background-size: 50px 50px;
       background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+      mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
       pointer-events: none;
     }
 
-    /* Ambient Lighting Glow Orbs */
+    /* Concentric Orbit/Radar Rings for Scene 3 */
+    #orbit-canvas {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      pointer-events: none;
+      z-index: 15;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #orbit-canvas.visible {
+      opacity: 1;
+    }
+
+    /* Ambient Glow Orbs */
     .glow-orb {
       position: absolute;
       border-radius: 50%;
@@ -88,31 +101,30 @@
     }
 
     .orb-blue {
-      top: 15%;
-      left: 30%;
-      width: 650px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.35), transparent 70%);
+      top: 20%;
+      left: 32%;
+      width: 680px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 70%);
     }
 
     .orb-indigo {
-      bottom: 10%;
-      right: 25%;
+      bottom: 12%;
+      right: 28%;
       width: 600px;
       height: 500px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.25), transparent 70%);
     }
 
     .orb-red {
-      top: 25%;
-      left: 38%;
-      width: 500px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(239, 68, 68, 0.3), transparent 70%);
+      top: 30%;
+      left: 36%;
+      width: 520px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.35), transparent 70%);
       opacity: 0;
     }
 
-    /* Vignette */
     .vignette {
       position: absolute;
       inset: 0;
@@ -121,7 +133,7 @@
       z-index: 10;
     }
 
-    /* Scenes Container */
+    /* Scene Transitions */
     .scene {
       position: absolute;
       inset: 0;
@@ -141,85 +153,89 @@
     }
 
     /* ============================================================
-       SCENE 1 & 2: PAYMENT CARD & RETRY BUTTON
+       CENTRAL PAYMENT CARD (Anchor of the entire sequence)
+       Exact coordinates on 1920x1080 stage:
+       Center: (960, 530) | Width: 480px | Height: 310px
+       Left: 720px | Right: 1200px | Top: 375px | Bottom: 685px
        ============================================================ */
-    .payment-card-wrapper {
-      position: relative;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, filter 0.8s ease;
-      z-index: 25;
-    }
-
-    .payment-card {
-      width: 560px;
-      padding: 38px 44px;
-      background: rgba(13, 21, 38, 0.75);
+    #central-payment-card {
+      position: absolute;
+      left: 720px;
+      top: 375px;
+      width: 480px;
+      height: 310px;
+      padding: 28px 34px;
+      background: radial-gradient(130% 130% at 50% 10%, rgba(21, 29, 50, 0.88) 0%, rgba(10, 16, 32, 0.94) 100%);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 28px;
+      border: 1.5px solid rgba(239, 68, 68, 0.45);
+      border-radius: 26px;
       box-shadow: 
-        0 24px 60px -12px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 0 40px -10px rgba(239, 68, 68, 0.15);
-      position: relative;
-      overflow: hidden;
+        0 24px 60px -10px rgba(0, 0, 0, 0.85),
+        0 0 45px -8px rgba(239, 68, 68, 0.28),
+        inset 0 0 24px rgba(239, 68, 68, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 30;
+      transform: scale(0.94);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, border-color 0.5s ease;
     }
 
-    /* Top Red Status Accent Line */
+    #central-payment-card.visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+
     .card-top-accent {
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
       background: linear-gradient(90deg, transparent, #ef4444 30%, #f87171 50%, #ef4444 70%, transparent);
-      box-shadow: 0 0 16px rgba(239, 68, 68, 0.8);
+      box-shadow: 0 0 14px rgba(239, 68, 68, 0.9);
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
     }
 
-    .brand-pill {
+    .txn-id-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.5px;
+      font-weight: 500;
+      color: #94a3b8;
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      gap: 7px;
+      padding: 5px 12px;
       border-radius: 100px;
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      font-size: 12px;
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      font-size: 11px;
       font-weight: 700;
       color: #fca5a5;
       letter-spacing: 0.8px;
       text-transform: uppercase;
     }
 
-    .status-pulse-dot {
+    .status-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #ef4444;
-      box-shadow: 0 0 10px #ef4444;
-      animation: pulse-red 1.6s infinite;
+      box-shadow: 0 0 8px #ef4444;
+      animation: pulse-red 1.6s infinite ease-in-out;
     }
 
     @keyframes pulse-red {
@@ -227,133 +243,421 @@
       50% { opacity: 0.4; transform: scale(1.3); }
     }
 
-    .fail-headline {
-      font-size: 15px;
+    .card-headline {
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #f87171;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 2px;
     }
 
-    .amount-display {
-      font-size: 64px;
+    .card-amount {
+      font-size: 54px;
       font-weight: 800;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       color: #ffffff;
-      line-height: 1.05;
-      margin-bottom: 24px;
+      line-height: 1;
+      margin-bottom: 12px;
       font-feature-settings: "tnum";
     }
 
-    .amount-symbol {
-      color: #94a3b8;
-      font-weight: 600;
-      margin-right: 4px;
-    }
-
-    .details-grid {
+    .meta-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      padding: 16px 20px;
-      background: rgba(4, 9, 20, 0.6);
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(4, 9, 20, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      margin-bottom: 26px;
+      border-radius: 14px;
+      margin-bottom: 6px;
     }
 
-    .detail-item .label {
-      font-size: 11px;
+    .meta-col .label {
+      font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      margin-bottom: 2px;
     }
 
-    .detail-item .value {
-      font-size: 14px;
-      font-weight: 600;
+    .meta-col .val {
+      font-size: 13px;
+      font-weight: 700;
       color: #e2e8f0;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* Simulated Payment Retry Button */
-    .retry-button-container {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    .meta-divider {
+      width: 1px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 16px;
     }
 
-    .retry-button-container.visible {
+    .card-timestamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #64748b;
+      text-align: center;
+    }
+
+    /* Simulated Retry Button (Scene 2) */
+    #retry-btn-box {
+      position: absolute;
+      bottom: 24px;
+      left: 34px;
+      right: 34px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 35;
+    }
+
+    #retry-btn-box.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .retry-button {
-      position: relative;
-      width: 100%;
-      padding: 18px 28px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #2563eb, #3b82f6 50%, #4f46e5 100%);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 
-        0 10px 30px -6px rgba(37, 99, 235, 0.6),
-        0 0 0 1px rgba(59, 130, 246, 0.4);
-      color: white;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      overflow: hidden;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    }
-
-    .retry-button.clicked {
-      transform: scale(0.96);
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.8);
-      filter: brightness(1.2);
-    }
-
-    .retry-button.freeze {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      border-color: rgba(245, 158, 11, 0.4);
-      box-shadow: 0 0 35px rgba(245, 158, 11, 0.25);
-      cursor: default;
-      filter: none;
-    }
-
-    .button-ripple {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      transform: scale(0);
+    #retry-btn-box.collapsed {
+      opacity: 0;
+      transform: scale(0.9);
       pointer-events: none;
     }
 
-    .button-ripple.animate {
-      animation: ripple 0.8s ease-out forwards;
+    .retry-btn {
+      position: relative;
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6 60%, #6366f1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.15s ease, filter 0.2s ease, background 0.3s ease;
     }
 
-    @keyframes ripple {
-      to {
-        transform: scale(35);
-        opacity: 0;
-      }
+    .retry-btn.clicked {
+      transform: scale(0.96);
+      filter: brightness(1.2);
+    }
+
+    .retry-btn.freeze {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border-color: rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+      cursor: default;
+    }
+
+    /* Connection Ports on Central Card Perimeter */
+    .card-port-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 40;
+    }
+
+    .card-port-dot.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Port 1: Top Center (960, 375) -> x=240, y=0 on card */
+    #port-center-top {
+      top: 0;
+      left: 240px;
+      border: 2.5px solid #f59e0b;
+      box-shadow: 0 0 14px #f59e0b;
+    }
+
+    /* Port 2: Left Center (720, 530) -> x=0, y=155 on card */
+    #port-center-left {
+      top: 155px;
+      left: 0;
+      border: 2.5px solid #06b6d4;
+      box-shadow: 0 0 14px #06b6d4;
+    }
+
+    /* Port 3: Right Center (1200, 530) -> x=480, y=155 on card */
+    #port-center-right {
+      top: 155px;
+      left: 480px;
+      border: 2.5px solid #a855f7;
+      box-shadow: 0 0 14px #a855f7;
+    }
+
+    /* Port 4: Bottom Left (780, 685) -> x=60, y=310 on card */
+    #port-center-botleft {
+      top: 310px;
+      left: 60px;
+      border: 2.5px solid #3b82f6;
+      box-shadow: 0 0 14px #3b82f6;
+    }
+
+    /* Port 5: Bottom Right (1140, 685) -> x=420, y=310 on card */
+    #port-center-botright {
+      top: 310px;
+      left: 420px;
+      border: 2.5px solid #ef4444;
+      box-shadow: 0 0 14px #ef4444;
+    }
+
+    /* ============================================================
+       SVG CONNECTOR LAYER (Exact port-to-port physical paths)
+       ============================================================ */
+    #connectors-svg {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    .connector-path {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .connector-glow {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.35;
+      filter: blur(4px);
+    }
+
+    /* Traveling Energy Pulses */
+    .traveling-pulse {
+      fill: #ffffff;
+      opacity: 0;
+    }
+
+    /* ============================================================
+       FIVE RECOVERY DECISION CARDS (Radial Decision Tree)
+       ============================================================ */
+    .decision-card {
+      position: absolute;
+      width: 340px;
+      height: 96px;
+      padding: 16px 20px;
+      border-radius: 20px;
+      background: rgba(11, 18, 33, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      z-index: 30;
+    }
+
+    .decision-card.revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .decision-card.pulse-active {
+      animation: card-gentle-breathe 2.8s infinite ease-in-out;
+    }
+
+    @keyframes card-gentle-breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .card-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-text-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+      margin-bottom: 3px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      font-weight: 500;
+      color: #94a3b8;
+      line-height: 1.25;
+    }
+
+    .target-port-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 45;
+    }
+
+    .target-port-dot.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* 1. RETRY? (Top Center: x=790, y=119) */
+    #card-retry {
+      left: 790px;
+      top: 119px;
+      border-color: rgba(245, 158, 11, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(245, 158, 11, 0.22);
+    }
+    #card-retry .card-icon-box {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    #port-card-retry {
+      left: 960px;
+      top: 215px;
+      border: 2.5px solid #f59e0b;
+      box-shadow: 0 0 14px #f59e0b;
+    }
+
+    /* 2. SWITCH ROUTE? (Left Center: x=170, y=482) */
+    #card-switch {
+      left: 170px;
+      top: 482px;
+      width: 350px;
+      border-color: rgba(6, 182, 212, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(6, 182, 212, 0.22);
+    }
+    #card-switch .card-icon-box {
+      background: rgba(6, 182, 212, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+    #port-card-switch {
+      left: 520px;
+      top: 530px;
+      border: 2.5px solid #06b6d4;
+      box-shadow: 0 0 14px #06b6d4;
+    }
+
+    /* 3. ASK CUSTOMER? (Right Center: x=1400, y=482) */
+    #card-customer {
+      left: 1400px;
+      top: 482px;
+      width: 350px;
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(168, 85, 247, 0.22);
+    }
+    #card-customer .card-icon-box {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    #port-card-customer {
+      left: 1400px;
+      top: 530px;
+      border: 2.5px solid #a855f7;
+      box-shadow: 0 0 14px #a855f7;
+    }
+
+    /* 4. WAIT? (Bottom Left: x=320, y=820) */
+    #card-wait {
+      left: 320px;
+      top: 820px;
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(59, 130, 246, 0.22);
+    }
+    #card-wait .card-icon-box {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    #port-card-wait {
+      left: 610px;
+      top: 820px;
+      border: 2.5px solid #3b82f6;
+      box-shadow: 0 0 14px #3b82f6;
+    }
+
+    /* 5. STOP? (Bottom Right: x=1260, y=820) */
+    #card-stop {
+      left: 1260px;
+      top: 820px;
+      border-color: rgba(239, 68, 68, 0.5);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(239, 68, 68, 0.22);
+    }
+    #card-stop .card-icon-box {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    #port-card-stop {
+      left: 1310px;
+      top: 820px;
+      border: 2.5px solid #ef4444;
+      box-shadow: 0 0 14px #ef4444;
+    }
+
+    /* Bottom Pill Caption */
+    #decision-caption-pill {
+      position: absolute;
+      left: 50%;
+      top: 975px;
+      transform: translateX(-50%) translateY(16px);
+      padding: 12px 32px;
+      background: rgba(11, 18, 33, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+    }
+
+    #decision-caption-pill.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Virtual Mouse Cursor */
@@ -363,163 +667,25 @@
       height: 28px;
       top: 0;
       left: 0;
-      transform: translate(1100px, 850px);
+      transform: translate(1220px, 850px);
       pointer-events: none;
       z-index: 100;
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.35s ease;
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
-    }
-
-    /* ============================================================
-       SCENE 3: THE DECISION PROBLEM (BRANCHING VECTORS & NODES)
-       ============================================================ */
-    #decision-canvas {
-      position: absolute;
-      inset: 0;
-      width: 1920px;
-      height: 1080px;
-      pointer-events: none;
-      z-index: 22;
-    }
-
-    .decision-node {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 22px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(20px);
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 17px;
-      font-weight: 700;
-      color: #ffffff;
-      opacity: 0;
-      transform: scale(0.85);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 30;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
-    }
-
-    .decision-node.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .decision-node.pulsing {
-      animation: node-pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes node-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .node-icon-box {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .node-retry {
-      top: 220px;
-      left: 50%;
-      transform: translateX(-50%) scale(0.85);
-      border-color: rgba(245, 158, 11, 0.35);
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
-    }
-    .node-retry.visible {
-      transform: translateX(-50%) scale(1);
-    }
-    .node-retry .node-icon-box {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-    }
-
-    .node-switch {
-      top: 510px;
-      left: 310px;
-      border-color: rgba(6, 182, 212, 0.35);
-      box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
-    }
-    .node-switch .node-icon-box {
-      background: rgba(6, 182, 212, 0.15);
-      color: #38bdf8;
-    }
-
-    .node-customer {
-      top: 510px;
-      right: 310px;
-      border-color: rgba(139, 92, 246, 0.35);
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
-    }
-    .node-customer .node-icon-box {
-      background: rgba(139, 92, 246, 0.15);
-      color: #a78bfa;
-    }
-
-    .node-wait {
-      bottom: 230px;
-      left: 640px;
-      border-color: rgba(59, 130, 246, 0.35);
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
-    }
-    .node-wait .node-icon-box {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-    }
-
-    .node-stop {
-      bottom: 230px;
-      right: 640px;
-      border-color: rgba(239, 68, 68, 0.45);
-      box-shadow: 0 0 35px rgba(239, 68, 68, 0.25);
-    }
-    .node-stop .node-icon-box {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-    }
-
-    .decision-banner {
-      position: absolute;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      padding: 10px 24px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #94a3b8;
-      opacity: 0;
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 35;
-    }
-
-    .decision-banner.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
     }
 
     /* ============================================================
        SCENE 4: KEY MESSAGE #1
        ============================================================ */
     .typography-scene {
-      max-width: 1200px;
+      max-width: 1240px;
       text-align: center;
       padding: 0 40px;
     }
 
     .message-sub {
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 400;
       color: #94a3b8;
       line-height: 1.4;
@@ -530,7 +696,7 @@
     }
 
     .message-hero {
-      font-size: 78px;
+      font-size: 80px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.15;
@@ -658,7 +824,6 @@
       transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
     }
 
-    /* Pipeline Step Architecture */
     .architecture-chain {
       display: flex;
       align-items: center;
@@ -738,7 +903,6 @@
       transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s;
     }
 
-    /* Final Team Lockup */
     .final-meta {
       margin-top: 36px;
       display: flex;
@@ -760,13 +924,11 @@
     }
 
     .team-badge span {
-      color: #cbd5e1;
-      font-weight: 600;
+      color: #60a5fa;
+      font-weight: 700;
     }
 
-    /* ============================================================
-       TOP CONTROL BAR & SCREEN RECORDER HELPERS
-       ============================================================ */
+    /* Top Control Bar */
     #recorder-ui {
       position: absolute;
       top: 24px;
@@ -845,7 +1007,7 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Start Overlay (For clean screen recording launch) */
+    /* Start Overlay */
     #start-overlay {
       position: absolute;
       inset: 0;
@@ -919,16 +1081,17 @@
     <div id="stage">
       <!-- Ambient Elements -->
       <div class="bg-grid"></div>
+      <canvas id="orbit-canvas" width="1920" height="1080"></canvas>
       <div class="glow-orb orb-blue" id="orb-blue"></div>
       <div class="glow-orb orb-indigo" id="orb-indigo"></div>
       <div class="glow-orb orb-red" id="orb-red"></div>
       <div class="vignette"></div>
 
-      <!-- Top Recorder UI (Clean / Press 'C' to hide) -->
+      <!-- Top Recorder UI -->
       <div id="recorder-ui">
         <div class="brand-tag">
           <div class="live-dot"></div>
-          <span>IRO // BUILDATHON PITCH INTRO</span>
+          <span>IRO // BUILDATHON PITCH INTRO • OM DAPKE</span>
         </div>
         <div class="controls-group">
           <div class="timer-pill" id="playback-timer">00.0s / 24.0s</div>
@@ -948,104 +1111,177 @@
         <path d="M4 3L18 13.5L11.5 14.5L8.5 21L4 3Z" fill="#ffffff" stroke="#0f172a" stroke-width="2" stroke-linejoin="round"/>
       </svg>
 
-      <!-- Dynamic Decision Canvas for Connecting Vectors -->
-      <canvas id="decision-canvas" width="1920" height="1080"></canvas>
+      <!-- SVG Physical Connector Layer (Starts exactly at central card edge, terminates at decision cards) -->
+      <svg id="connectors-svg" viewBox="0 0 1920 1080">
+        <defs>
+          <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- 1. RETRY CONNECTOR (Vertical: 960,375 -> 960,215) -->
+        <g id="group-conn-retry">
+          <line id="glow-retry" class="connector-glow" x1="960" y1="375" x2="960" y2="215" stroke="#f59e0b" />
+          <line id="line-retry" class="connector-path" x1="960" y1="375" x2="960" y2="215" stroke="#f59e0b" />
+          <circle id="pulse-retry" class="traveling-pulse" r="4" />
+        </g>
+
+        <!-- 2. SWITCH ROUTE CONNECTOR (Horizontal: 720,530 -> 520,530) -->
+        <g id="group-conn-switch">
+          <line id="glow-switch" class="connector-glow" x1="720" y1="530" x2="520" y2="530" stroke="#06b6d4" />
+          <line id="line-switch" class="connector-path" x1="720" y1="530" x2="520" y2="530" stroke="#06b6d4" />
+          <circle id="pulse-switch" class="traveling-pulse" r="4" />
+        </g>
+
+        <!-- 3. ASK CUSTOMER CONNECTOR (Horizontal: 1200,530 -> 1400,530) -->
+        <g id="group-conn-customer">
+          <line id="glow-customer" class="connector-glow" x1="1200" y1="530" x2="1400" y2="530" stroke="#a855f7" />
+          <line id="line-customer" class="connector-path" x1="1200" y1="530" x2="1400" y2="530" stroke="#a855f7" />
+          <circle id="pulse-customer" class="traveling-pulse" r="4" />
+        </g>
+
+        <!-- 4. WAIT CONNECTOR (Diagonal: 780,685 -> 610,820) -->
+        <g id="group-conn-wait">
+          <line id="glow-wait" class="connector-glow" x1="780" y1="685" x2="610" y2="820" stroke="#3b82f6" />
+          <line id="line-wait" class="connector-path" x1="780" y1="685" x2="610" y2="820" stroke="#3b82f6" />
+          <circle id="pulse-wait" class="traveling-pulse" r="4" />
+        </g>
+
+        <!-- 5. STOP CONNECTOR (Diagonal: 1140,685 -> 1310,820) -->
+        <g id="group-conn-stop">
+          <line id="glow-stop" class="connector-glow" x1="1140" y1="685" x2="1310" y2="820" stroke="#ef4444" />
+          <line id="line-stop" class="connector-path" x1="1140" y1="685" x2="1310" y2="820" stroke="#ef4444" />
+          <circle id="pulse-stop" class="traveling-pulse" r="4" />
+        </g>
+      </svg>
+
+      <!-- Target Port Dots (Visual confirmation of connection points at card edges) -->
+      <div class="target-port-dot" id="port-card-retry"></div>
+      <div class="target-port-dot" id="port-card-switch"></div>
+      <div class="target-port-dot" id="port-card-customer"></div>
+      <div class="target-port-dot" id="port-card-wait"></div>
+      <div class="target-port-dot" id="port-card-stop"></div>
 
       <!-- ============================================================
-           SCENE 1, 2 & 3: PAYMENT FAILURE & BRANCHING DECISION NODES
+           SCENE 1, 2 & 3: CENTRAL PAYMENT CARD
            ============================================================ -->
-      <div class="scene" id="scene-payment">
-        <div class="payment-card-wrapper" id="card-wrapper">
-          <div class="payment-card" id="card-element">
-            <div class="card-top-accent"></div>
-            
-            <div class="card-header">
-              <div class="brand-pill">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                TXN #pay_L8f921
-              </div>
-              <div class="status-badge">
-                <span class="status-pulse-dot"></span>
-                FAILED
-              </div>
-            </div>
+      <div id="central-payment-card">
+        <div class="card-top-accent"></div>
 
-            <div class="fail-headline">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              PAYMENT FAILED
-            </div>
+        <!-- 5 Connection Port Dots on Card Perimeter -->
+        <div class="card-port-dot" id="port-center-top"></div>
+        <div class="card-port-dot" id="port-center-left"></div>
+        <div class="card-port-dot" id="port-center-right"></div>
+        <div class="card-port-dot" id="port-center-botleft"></div>
+        <div class="card-port-dot" id="port-center-botright"></div>
 
-            <div class="amount-display">
-              <span class="amount-symbol">₹</span>75,000
-            </div>
+        <div class="card-header">
+          <div class="txn-id-pill">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            txn_9f3a7e2d
+          </div>
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            FAILED
+          </div>
+        </div>
 
-            <div class="details-grid">
-              <div class="detail-item">
-                <div class="label">Payment Method</div>
-                <div class="value">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                  CREDIT CARD
-                </div>
-              </div>
-              <div class="detail-item">
-                <div class="label">Primary Route</div>
-                <div class="value">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-                  HDFC_SWITCH (504)
-                </div>
-              </div>
-            </div>
+        <div>
+          <div class="card-headline">PAYMENT FAILED</div>
+          <div class="card-amount">₹75,000</div>
+        </div>
 
-            <!-- Scene 2: The Retry Button -->
-            <div class="retry-button-container" id="retry-btn-box">
-              <button class="retry-button" id="retry-action-btn">
-                <div class="button-ripple" id="btn-ripple"></div>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.72 2.24L21 8M21 3v5h-5"/></svg>
-                <span id="retry-btn-label">RETRY PAYMENT</span>
-              </button>
+        <div class="meta-row">
+          <div class="meta-col">
+            <div class="label">Payment Method</div>
+            <div class="val">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              CREDIT CARD
             </div>
           </div>
-        </div>
-
-        <!-- Scene 3: Branching Decision Nodes (Positioned around central card) -->
-        <div class="decision-node node-retry" id="node-retry">
-          <div class="node-icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.72 2.24L21 8M21 3v5h-5"/></svg>
+          <div class="meta-divider"></div>
+          <div class="meta-col">
+            <div class="label">Attempt</div>
+            <div class="val">1 / 3</div>
           </div>
-          <div>Retry?</div>
         </div>
 
-        <div class="decision-node node-switch" id="node-switch">
-          <div class="node-icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-          </div>
-          <div>Switch route?</div>
-        </div>
+        <div class="card-timestamp">Oct 26, 2024 · 10:24:17 PM</div>
 
-        <div class="decision-node node-customer" id="node-customer">
-          <div class="node-icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div>Ask customer?</div>
+        <!-- Scene 2 Simulated Retry Button -->
+        <div id="retry-btn-box">
+          <button class="retry-btn" id="retry-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.72 2.24L21 8M21 3v5h-5"/></svg>
+            <span id="retry-label">RETRY PAYMENT</span>
+          </button>
         </div>
+      </div>
 
-        <div class="decision-node node-wait" id="node-wait">
-          <div class="node-icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>Wait?</div>
+      <!-- ============================================================
+           SCENE 3: FIVE RECOVERY DECISION CARDS
+           ============================================================ -->
+      <!-- 1. RETRY? (Top Center) -->
+      <div class="decision-card" id="card-retry">
+        <div class="card-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.72 2.24L21 8M21 3v5h-5"/></svg>
         </div>
+        <div class="card-text-box">
+          <div class="card-title">Retry?</div>
+          <div class="card-desc">Try again with backoff</div>
+        </div>
+      </div>
 
-        <div class="decision-node node-stop" id="node-stop">
-          <div class="node-icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-          </div>
-          <div>STOP?</div>
+      <!-- 2. SWITCH ROUTE? (Left Center) -->
+      <div class="decision-card" id="card-switch">
+        <div class="card-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
         </div>
+        <div class="card-text-box">
+          <div class="card-title">Switch route?</div>
+          <div class="card-desc">Try alternate payment route</div>
+        </div>
+      </div>
 
-        <div class="decision-banner" id="decision-banner">
-          1 FAILED PAYMENT &nbsp;→&nbsp; 5 RECOVERY DECISIONS
+      <!-- 3. ASK CUSTOMER? (Right Center) -->
+      <div class="decision-card" id="card-customer">
+        <div class="card-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
+        <div class="card-text-box">
+          <div class="card-title">Ask customer?</div>
+          <div class="card-desc">Send recovery link / notify</div>
+        </div>
+      </div>
+
+      <!-- 4. WAIT? (Bottom Left) -->
+      <div class="decision-card" id="card-wait">
+        <div class="card-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="card-text-box">
+          <div class="card-title">Wait?</div>
+          <div class="card-desc">Check if it's processing</div>
+        </div>
+      </div>
+
+      <!-- 5. STOP? (Bottom Right) -->
+      <div class="decision-card" id="card-stop">
+        <div class="card-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        </div>
+        <div class="card-text-box">
+          <div class="card-title">STOP?</div>
+          <div class="card-desc">Potential risk / fraud</div>
+        </div>
+      </div>
+
+      <!-- Bottom Caption Pill -->
+      <div id="decision-caption-pill">
+        1 FAILED PAYMENT &nbsp;→&nbsp; 5 RECOVERY DECISIONS
       </div>
 
       <!-- ============================================================
@@ -1064,7 +1300,7 @@
 
       <!-- ============================================================
            SCENE 5: KEY MESSAGE #2
-           ============================================================ */ -->
+           ============================================================ -->
       <div class="scene" id="scene-message2">
         <div class="typography-scene">
           <div class="message-sub" id="msg2-sub">
@@ -1103,7 +1339,7 @@
           <div class="iro-logo-glory" id="iro-logo">IRO</div>
           <div class="iro-subhead" id="iro-subhead">INTELLIGENT RECOVERY ORCHESTRATOR</div>
 
-          <!-- Minimal Architecture Flow -->
+          <!-- Minimal Architecture Cascade -->
           <div class="architecture-chain" id="arch-chain">
             <div class="arch-step" id="step-deterministic">
               <div class="step-num">TIER 01</div>
@@ -1142,13 +1378,11 @@
             </div>
           </div>
 
-          <!-- Subtle Final Credits -->
+          <!-- Final Credits (Only Om Dapke) -->
           <div class="final-meta" id="final-meta">
             <div class="team-badge">
               RAZORPAY AI BUILDATHON 2026 &nbsp;•&nbsp; 
-              <span>Om Dapke</span> &nbsp;•&nbsp; 
-              <span>Om Kumar Garg</span> &nbsp;•&nbsp; 
-              <span>Mrunal Nikalje</span>
+              <span>Om Dapke</span>
             </div>
           </div>
         </div>
@@ -1157,14 +1391,14 @@
       <!-- Start Overlay For Screen Recording Alignment -->
       <div id="start-overlay">
         <div class="start-card">
-          <div style="font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #60a5fa; text-transform: uppercase; margin-bottom: 12px;">
-            Razorpay AI Buildathon 2026
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #60a5fa; text-transform: uppercase; margin-bottom: 10px;">
+            Razorpay AI Buildathon 2026 • Om Dapke
           </div>
           <h1 style="font-size: 38px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 14px;">
             IRO Cinematic Pitch Intro
           </h1>
-          <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; max-width: 460px; margin: 0 auto;">
-            A 24-second high-precision visual sequence engineered for your pitch video opening.
+          <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; max-width: 480px; margin: 0 auto;">
+            A 24-second visual sequence engineered for your pitch video opening.
           </p>
           <button class="start-btn" id="start-playback-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -1196,55 +1430,152 @@
     resizeStage();
 
     /* ============================================================
+       RADAR / CONCENTRIC ORBIT RINGS
+       ============================================================ */
+    const orbitCanvas = document.getElementById('orbit-canvas');
+    const orbitCtx = orbitCanvas.getContext('2d');
+    function drawOrbitRings() {
+      orbitCtx.clearRect(0, 0, 1920, 1080);
+      const cx = 960;
+      const cy = 530;
+
+      // Ring 1 (Inner)
+      orbitCtx.beginPath();
+      orbitCtx.arc(cx, cy, 280, 0, Math.PI * 2);
+      orbitCtx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      orbitCtx.lineWidth = 1.5;
+      orbitCtx.stroke();
+
+      // Ring 2 (Middle)
+      orbitCtx.beginPath();
+      orbitCtx.arc(cx, cy, 460, 0, Math.PI * 2);
+      orbitCtx.strokeStyle = 'rgba(59, 130, 246, 0.06)';
+      orbitCtx.lineWidth = 1.5;
+      orbitCtx.setLineDash([8, 12]);
+      orbitCtx.stroke();
+      orbitCtx.setLineDash([]);
+
+      // Ring 3 (Outer)
+      orbitCtx.beginPath();
+      orbitCtx.arc(cx, cy, 640, 0, Math.PI * 2);
+      orbitCtx.strokeStyle = 'rgba(168, 85, 247, 0.04)';
+      orbitCtx.lineWidth = 1.5;
+      orbitCtx.stroke();
+    }
+    drawOrbitRings();
+
+    /* ============================================================
+       CONNECTOR DEFINITIONS & GEOMETRY
+       Exact Coordinates on 1920x1080 stage:
+       Origin -> Target:
+       1. Retry:    (960, 375)  -> (960, 215)  [L = 160]
+       2. Switch:   (720, 530)  -> (520, 530)  [L = 200]
+       3. Customer: (1200, 530) -> (1400, 530) [L = 200]
+       4. Wait:     (780, 685)  -> (610, 820)  [L = 217.1]
+       5. Stop:     (1140, 685) -> (1310, 820) [L = 217.1]
+       ============================================================ */
+    const CONNECTORS = {
+      retry: {
+        x1: 960, y1: 375, x2: 960, y2: 215, length: 160,
+        lineEl: document.getElementById('line-retry'),
+        glowEl: document.getElementById('glow-retry'),
+        pulseEl: document.getElementById('pulse-retry'),
+        originPort: document.getElementById('port-center-top'),
+        targetPort: document.getElementById('port-card-retry'),
+        cardEl: document.getElementById('card-retry'),
+        glowColor: '#f59e0b',
+        revealAt: 6000, duration: 400
+      },
+      switch: {
+        x1: 720, y1: 530, x2: 520, y2: 530, length: 200,
+        lineEl: document.getElementById('line-switch'),
+        glowEl: document.getElementById('glow-switch'),
+        pulseEl: document.getElementById('pulse-switch'),
+        originPort: document.getElementById('port-center-left'),
+        targetPort: document.getElementById('port-card-switch'),
+        cardEl: document.getElementById('card-switch'),
+        glowColor: '#06b6d4',
+        revealAt: 6600, duration: 400
+      },
+      customer: {
+        x1: 1200, y1: 530, x2: 1400, y2: 530, length: 200,
+        lineEl: document.getElementById('line-customer'),
+        glowEl: document.getElementById('glow-customer'),
+        pulseEl: document.getElementById('pulse-customer'),
+        originPort: document.getElementById('port-center-right'),
+        targetPort: document.getElementById('port-card-customer'),
+        cardEl: document.getElementById('card-customer'),
+        glowColor: '#a855f7',
+        revealAt: 7200, duration: 400
+      },
+      wait: {
+        x1: 780, y1: 685, x2: 610, y2: 820, length: 217.1,
+        lineEl: document.getElementById('line-wait'),
+        glowEl: document.getElementById('glow-wait'),
+        pulseEl: document.getElementById('pulse-wait'),
+        originPort: document.getElementById('port-center-botleft'),
+        targetPort: document.getElementById('port-card-wait'),
+        cardEl: document.getElementById('card-wait'),
+        glowColor: '#3b82f6',
+        revealAt: 7800, duration: 400
+      },
+      stop: {
+        x1: 1140, y1: 685, x2: 1310, y2: 820, length: 217.1,
+        lineEl: document.getElementById('line-stop'),
+        glowEl: document.getElementById('glow-stop'),
+        pulseEl: document.getElementById('pulse-stop'),
+        originPort: document.getElementById('port-center-botright'),
+        targetPort: document.getElementById('port-card-stop'),
+        cardEl: document.getElementById('card-stop'),
+        glowColor: '#ef4444',
+        revealAt: 8400, duration: 400
+      }
+    };
+
+    // Initialize connector dash arrays
+    Object.values(CONNECTORS).forEach(c => {
+      c.lineEl.style.strokeDasharray = c.length;
+      c.lineEl.style.strokeDashoffset = c.length;
+      c.glowEl.style.strokeDasharray = c.length;
+      c.glowEl.style.strokeDashoffset = c.length;
+    });
+
+    /* ============================================================
        DETERMINISTIC TIMELINE ENGINE (24,000 ms = 24.0s)
        ============================================================ */
     const TOTAL_DURATION_MS = 24000;
     let isPlaying = false;
     let startTime = 0;
-    let pauseTime = 0;
     let elapsedMs = 0;
     let rafId = null;
 
-    // DOM References
+    // DOM Elements
     const timerDisplay = document.getElementById('playback-timer');
     const startOverlay = document.getElementById('start-overlay');
     const recorderUi = document.getElementById('recorder-ui');
     const virtualCursor = document.getElementById('virtual-cursor');
-    const decisionCanvas = document.getElementById('decision-canvas');
-    const ctx = decisionCanvas.getContext('2d');
-
-    // Scenes
-    const scenePayment = document.getElementById('scene-payment');
-    const sceneMessage1 = document.getElementById('scene-message1');
-    const sceneMessage2 = document.getElementById('scene-message2');
-    const sceneReveal = document.getElementById('scene-reveal');
-
-    // Scene Elements
-    const cardWrapper = document.getElementById('card-wrapper');
+    const centralCard = document.getElementById('central-payment-card');
     const retryBtnBox = document.getElementById('retry-btn-box');
-    const retryActionBtn = document.getElementById('retry-action-btn');
-    const btnRipple = document.getElementById('btn-ripple');
-    const retryBtnLabel = document.getElementById('retry-btn-label');
-
-    const nodeRetry = document.getElementById('node-retry');
-    const nodeSwitch = document.getElementById('node-switch');
-    const nodeCustomer = document.getElementById('node-customer');
-    const nodeWait = document.getElementById('node-wait');
-    const nodeStop = document.getElementById('node-stop');
-    const decisionBanner = document.getElementById('decision-banner');
+    const retryBtn = document.getElementById('retry-btn');
+    const retryLabel = document.getElementById('retry-label');
+    const decisionCaptionPill = document.getElementById('decision-caption-pill');
 
     const orbBlue = document.getElementById('orb-blue');
     const orbIndigo = document.getElementById('orb-indigo');
     const orbRed = document.getElementById('orb-red');
 
+    // Scenes 4, 5, 6
+    const sceneMessage1 = document.getElementById('scene-message1');
     const msg1Sub = document.getElementById('msg1-sub');
     const msg1Hero = document.getElementById('msg1-hero');
     const msg1Glow = document.getElementById('msg1-glow');
 
+    const sceneMessage2 = document.getElementById('scene-message2');
     const msg2Sub = document.getElementById('msg2-sub');
     const msg2Hero = document.getElementById('msg2-hero');
     const hazardPills = document.getElementById('hazard-pills');
 
+    const sceneReveal = document.getElementById('scene-reveal');
     const iroLogo = document.getElementById('iro-logo');
     const iroSubhead = document.getElementById('iro-subhead');
     const archChain = document.getElementById('arch-chain');
@@ -1256,67 +1587,19 @@
     const finalConclusion = document.getElementById('final-conclusion');
     const finalMeta = document.getElementById('final-meta');
 
-    // Linear Interpolation helper
     function lerp(start, end, amt) {
       return (1 - amt) * start + amt * end;
     }
 
-    // Cubic Bezier easeInOut
     function easeInOutCubic(x) {
       return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-    }
-
-    /* ============================================================
-       BRANCHING LINE DRAWING (Scene 3)
-       ============================================================ */
-    function drawBranchingVectors(progress) {
-      ctx.clearRect(0, 0, 1920, 1080);
-      if (progress <= 0) return;
-
-      const originX = 960;
-      const originY = 540;
-
-      // Target node coordinates on 1920x1080 stage
-      const targets = [
-        { x: 960, y: 260, color: '#f59e0b', activeAt: 0.1 },  // Top: Retry?
-        { x: 440, y: 540, color: '#06b6d4', activeAt: 0.25 }, // Left: Switch route?
-        { x: 1480, y: 540, color: '#8b5cf6', activeAt: 0.45 }, // Right: Ask customer?
-        { x: 740, y: 780, color: '#3b82f6', activeAt: 0.65 }, // Bottom-left: Wait?
-        { x: 1180, y: 780, color: '#ef4444', activeAt: 0.8 }  // Bottom-right: STOP?
-      ];
-
-      targets.forEach(t => {
-        if (progress > t.activeAt) {
-          const localProgress = Math.min(1, (progress - t.activeAt) / 0.2);
-          const currentX = lerp(originX, t.x, easeInOutCubic(localProgress));
-          const currentY = lerp(originY, t.y, easeInOutCubic(localProgress));
-
-          // Draw Glowing vector path
-          ctx.beginPath();
-          ctx.moveTo(originX, originY);
-          ctx.lineTo(currentX, currentY);
-          ctx.strokeStyle = t.color;
-          ctx.lineWidth = 2.5;
-          ctx.shadowColor = t.color;
-          ctx.shadowBlur = 16;
-          ctx.stroke();
-
-          // Particle on head
-          ctx.beginPath();
-          ctx.arc(currentX, currentY, 4, 0, Math.PI * 2);
-          ctx.fillStyle = '#ffffff';
-          ctx.shadowColor = '#ffffff';
-          ctx.shadowBlur = 10;
-          ctx.fill();
-        }
-      });
     }
 
     /* ============================================================
        FRAME-BY-FRAME TIMELINE RENDERER
        ============================================================ */
     function renderFrame(t) {
-      // 1. Update Timer Display
+      // Update Timer
       const sec = Math.min(24.0, t / 1000).toFixed(1);
       timerDisplay.textContent = `${sec.padStart(4, '0')}s / 24.0s`;
 
@@ -1324,119 +1607,146 @@
       // SCENE 1: PAYMENT FAILED (0.0s - 3.2s: 0ms - 3200ms)
       // ------------------------------------------------------------
       if (t < 3200) {
-        scenePayment.classList.add('active');
+        centralCard.classList.add('visible');
+        centralCard.style.opacity = Math.min(1, t / 1200);
+        centralCard.style.transform = `scale(${lerp(0.92, 1.0, easeInOutCubic(Math.min(1, t / 1200)))})`;
+        centralCard.style.filter = 'none';
+
+        orbRed.style.opacity = Math.min(0.42, (t / 1200) * 0.42);
+
+        // Hide downstream components
+        retryBtnBox.classList.remove('visible', 'collapsed');
+        retryBtn.classList.remove('clicked', 'freeze');
+        retryLabel.textContent = 'RETRY PAYMENT';
+        virtualCursor.style.opacity = '0';
+        orbitCanvas.classList.remove('visible');
+        decisionCaptionPill.classList.remove('visible');
+
+        // Reset connector lines & cards
+        Object.values(CONNECTORS).forEach(c => {
+          c.lineEl.style.strokeDashoffset = c.length;
+          c.glowEl.style.strokeDashoffset = c.length;
+          c.pulseEl.style.opacity = '0';
+          c.originPort.classList.remove('active');
+          c.targetPort.classList.remove('active');
+          c.cardEl.classList.remove('revealed', 'pulse-active');
+        });
+
         sceneMessage1.classList.remove('active');
         sceneMessage2.classList.remove('active');
         sceneReveal.classList.remove('active');
-
-        // Card Fade & Glide In
-        const enterProgress = Math.min(1, t / 1400);
-        cardWrapper.style.transform = `scale(${lerp(0.92, 1.0, easeInOutCubic(enterProgress))}) translateZ(0)`;
-        cardWrapper.style.opacity = enterProgress;
-        cardWrapper.style.filter = 'none';
-
-        // Red Glow
-        orbRed.style.opacity = Math.min(0.45, (t / 1200) * 0.45);
-
-        // Hide other scenes
-        retryBtnBox.classList.remove('visible');
-        virtualCursor.style.opacity = '0';
-        ctx.clearRect(0, 0, 1920, 1080);
       }
 
       // ------------------------------------------------------------
       // SCENE 2: RETRY BUTTON & THE FREEZE (3.2s - 5.6s: 3200ms - 5600ms)
       // ------------------------------------------------------------
       else if (t >= 3200 && t < 5600) {
-        scenePayment.classList.add('active');
-        sceneMessage1.classList.remove('active');
-
-        // Show Retry Button
+        centralCard.classList.add('visible');
         retryBtnBox.classList.add('visible');
+        retryBtnBox.classList.remove('collapsed');
 
-        // Animate Virtual Cursor Glide (3600ms -> 4400ms)
+        // Virtual Cursor Glide (3500ms -> 4350ms)
         if (t >= 3500 && t < 4500) {
           virtualCursor.style.opacity = '1';
-          const cursorProgress = Math.min(1, Math.max(0, (t - 3600) / 800));
+          const cursorProgress = Math.min(1, Math.max(0, (t - 3500) / 850));
           const eased = easeInOutCubic(cursorProgress);
 
-          // Cursor moves from (1150, 780) to button center (960, 680)
-          const curX = lerp(1180, 960, eased);
-          const curY = lerp(780, 680, eased);
+          // Cursor moves from (1200, 750) to button center (960, 620)
+          const curX = lerp(1200, 960, eased);
+          const curY = lerp(750, 620, eased);
           virtualCursor.style.transform = `translate(${curX}px, ${curY}px)`;
         }
 
-        // Button Click Event at 4400ms
-        if (t >= 4400 && t < 4600) {
-          retryActionBtn.classList.add('clicked');
-          btnRipple.classList.add('animate');
+        // Button Click at 4350ms
+        if (t >= 4350 && t < 4550) {
+          retryBtn.classList.add('clicked');
         } else {
-          retryActionBtn.classList.remove('clicked');
+          retryBtn.classList.remove('clicked');
         }
 
-        // THE TURNING POINT FREEZE (4600ms+)
-        if (t >= 4600) {
+        // THE TURNING POINT FREEZE (4550ms - 5600ms)
+        if (t >= 4550) {
           virtualCursor.style.opacity = '0';
-          retryActionBtn.classList.add('freeze');
-          retryBtnLabel.textContent = 'FREEZING EXECUTION...';
-          orbRed.style.opacity = '0.15';
+          retryBtn.classList.add('freeze');
+          retryLabel.textContent = 'FREEZING EXECUTION...';
         }
       }
 
       // ------------------------------------------------------------
-      // SCENE 3: THE DECISION PROBLEM (5.6s - 10.8s: 5600ms - 10800ms)
+      // SCENE 3: THE 5 RECOVERY DECISIONS (5.6s - 10.8s: 5600ms - 10800ms)
+      // Exact visual reference: Central card connects to 5 radial options!
       // ------------------------------------------------------------
       else if (t >= 5600 && t < 10800) {
-        scenePayment.classList.add('active');
+        centralCard.classList.add('visible');
+        retryBtnBox.classList.add('collapsed');
+        orbitCanvas.classList.add('visible');
+
+        // Reveal connectors and cards in rapid sequential order
+        Object.entries(CONNECTORS).forEach(([key, c]) => {
+          if (t >= c.revealAt) {
+            // 1. Origin port on central card lights up
+            c.originPort.classList.add('active');
+
+            // 2. Connector line draws outward from card edge to decision card
+            const lineProgress = Math.min(1, (t - c.revealAt) / c.duration);
+            const eased = easeInOutCubic(lineProgress);
+            const currentOffset = c.length * (1 - eased);
+            c.lineEl.style.strokeDashoffset = currentOffset;
+            c.glowEl.style.strokeDashoffset = currentOffset;
+
+            // 3. Once connector reaches the end, target port lights up & decision card reveals
+            if (lineProgress >= 0.85) {
+              c.targetPort.classList.add('active');
+              c.cardEl.classList.add('revealed');
+            }
+
+            // 4. Traveling energy pulse along the line once line is drawn
+            if (t >= c.revealAt + c.duration) {
+              c.cardEl.classList.add('pulse-active');
+              c.pulseEl.style.opacity = '1';
+
+              // Loop pulse outward every 1100ms
+              const pulseCycle = ((t - (c.revealAt + c.duration)) % 1100) / 1100;
+              const px = lerp(c.x1, c.x2, pulseCycle);
+              const py = lerp(c.y1, c.y2, pulseCycle);
+              c.pulseEl.setAttribute('cx', px);
+              c.pulseEl.setAttribute('cy', py);
+              c.pulseEl.setAttribute('fill', '#ffffff');
+              c.pulseEl.style.filter = `drop-shadow(0 0 8px ${c.glowColor})`;
+            }
+          }
+        });
+
+        // Reveal Bottom Caption
+        if (t >= 9000) {
+          decisionCaptionPill.classList.add('visible');
+        }
+
         sceneMessage1.classList.remove('active');
-
-        // Central Card recedes into background
-        cardWrapper.style.transform = 'scale(0.72) translateY(-10px)';
-        cardWrapper.style.opacity = '0.55';
-        cardWrapper.style.filter = 'blur(1.5px)';
-
-        // Vector Lines progress
-        const vecProgress = Math.min(1, (t - 5800) / 2800);
-        drawBranchingVectors(vecProgress);
-
-        // Nodes sequentially appear
-        if (t >= 6100) nodeRetry.classList.add('visible');
-        if (t >= 6600) nodeSwitch.classList.add('visible');
-        if (t >= 7200) nodeCustomer.classList.add('visible');
-        if (t >= 7800) nodeWait.classList.add('visible');
-        if (t >= 8400) {
-          nodeStop.classList.add('visible');
-          decisionBanner.classList.add('visible');
-        }
-
-        // Nodes visual competition / pulsing
-        if (t >= 8900) {
-          nodeRetry.classList.add('pulsing');
-          nodeSwitch.classList.add('pulsing');
-          nodeCustomer.classList.add('pulsing');
-          nodeWait.classList.add('pulsing');
-          nodeStop.classList.add('pulsing');
-        }
+        sceneMessage2.classList.remove('active');
+        sceneReveal.classList.remove('active');
       }
 
       // ------------------------------------------------------------
       // SCENE 4: KEY MESSAGE #1 (10.8s - 14.8s: 10800ms - 14800ms)
       // ------------------------------------------------------------
       else if (t >= 10800 && t < 14800) {
-        scenePayment.classList.remove('active');
+        // Fade out decision scene
+        centralCard.classList.remove('visible');
+        orbitCanvas.classList.remove('visible');
+        decisionCaptionPill.classList.remove('visible');
+
+        Object.values(CONNECTORS).forEach(c => {
+          c.originPort.classList.remove('active');
+          c.targetPort.classList.remove('active');
+          c.cardEl.classList.remove('revealed', 'pulse-active');
+          c.pulseEl.style.opacity = '0';
+        });
+
         sceneMessage1.classList.add('active');
         sceneMessage2.classList.remove('active');
-        ctx.clearRect(0, 0, 1920, 1080);
+        sceneReveal.classList.remove('active');
 
-        // Reset scene 3 elements
-        nodeRetry.classList.remove('visible', 'pulsing');
-        nodeSwitch.classList.remove('visible', 'pulsing');
-        nodeCustomer.classList.remove('visible', 'pulsing');
-        nodeWait.classList.remove('visible', 'pulsing');
-        nodeStop.classList.remove('visible', 'pulsing');
-        decisionBanner.classList.remove('visible');
-
-        // Reveal Typography
         msg1Sub.style.opacity = '1';
         msg1Sub.style.transform = 'translateY(0)';
         msg1Hero.style.opacity = '1';
@@ -1475,13 +1785,11 @@
         sceneMessage2.classList.remove('active');
         sceneReveal.classList.add('active');
 
-        // IRO Brand reveal
         iroLogo.style.opacity = '1';
         iroLogo.style.transform = 'scale(1)';
         iroSubhead.style.opacity = '1';
         iroSubhead.style.transform = 'translateY(0)';
 
-        // Architecture Pipeline
         if (t >= 19400) {
           archChain.style.opacity = '1';
           archChain.style.transform = 'translateY(0)';
@@ -1502,7 +1810,7 @@
           stepRecovery.classList.add('active');
         }
 
-        // Final Core Thesis Statements
+        // Climax Philosophy Statements
         if (t >= 21500) {
           finalPremise.style.opacity = '1';
           finalPremise.style.transform = 'translateY(0)';
@@ -1565,13 +1873,24 @@
       startTime = 0;
       isPlaying = true;
 
-      // Reset state styles
-      cardWrapper.style.transform = 'scale(0.92)';
-      cardWrapper.style.opacity = '0';
-      retryBtnBox.classList.remove('visible');
-      retryActionBtn.classList.remove('freeze', 'clicked');
-      retryBtnLabel.textContent = 'RETRY PAYMENT';
+      // Reset connector dashes
+      Object.values(CONNECTORS).forEach(c => {
+        c.lineEl.style.strokeDashoffset = c.length;
+        c.glowEl.style.strokeDashoffset = c.length;
+        c.pulseEl.style.opacity = '0';
+        c.originPort.classList.remove('active');
+        c.targetPort.classList.remove('active');
+        c.cardEl.classList.remove('revealed', 'pulse-active');
+      });
+
+      centralCard.classList.remove('visible');
+      retryBtnBox.classList.remove('visible', 'collapsed');
+      retryBtn.classList.remove('freeze', 'clicked');
+      retryLabel.textContent = 'RETRY PAYMENT';
       virtualCursor.style.opacity = '0';
+      orbitCanvas.classList.remove('visible');
+      decisionCaptionPill.classList.remove('visible');
+
       msg1Glow.classList.remove('underline');
       stepDeterministic.classList.remove('active');
       stepAi.classList.remove('active');
@@ -1622,7 +1941,7 @@
       }
     });
 
-    // Auto-preview initial frame at t=0
+    // Initial Frame at t=0
     renderFrame(0);
   </script>
 </body>
