@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay IRO — Intelligent Recovery Orchestrator Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        body { background-color: #0b0f19; color: #cbd5e1; padding: 28px; line-height: 1.5; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 20px; margin-bottom: 24px; }
+        .brand { display: flex; align-items: center; gap: 14px; }
+        .badge-live { background: #0284c7; color: #ffffff; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+        .title { font-size: 24px; font-weight: 800; color: #f8fafc; letter-spacing: -0.5px; }
+        .subtitle { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+        .banner { background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; font-size: 13px; color: #7dd3fc; display: flex; align-items: center; gap: 10px; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 28px; }
+        .kpi-card { background: #131b2e; border: 1px solid #1e293b; border-radius: 10px; padding: 18px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); }
+        .kpi-title { font-size: 12px; font-weight: 600; text-transform: uppercase; color: #94a3b8; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .kpi-value { font-size: 26px; font-weight: 800; color: #f8fafc; }
+        .kpi-delta { font-size: 13px; font-weight: 600; margin-top: 4px; }
+        .delta-pos { color: #10b981; }
+        .delta-neutral { color: #38bdf8; }
+        .delta-alert { color: #f43f5e; }
+        .section-card { background: #131b2e; border: 1px solid #1e293b; border-radius: 10px; padding: 22px; margin-bottom: 24px; }
+        .section-title { font-size: 17px; font-weight: 700; color: #f8fafc; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th { background: #1e293b; color: #94a3b8; padding: 10px 14px; font-weight: 600; border-bottom: 1px solid #334155; }
+        td { padding: 12px 14px; border-bottom: 1px solid #1e293b; }
+        tr:hover td { background: rgba(30, 41, 59, 0.5); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="brand">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="badge-live">PHASE 8 BENCHMARK</span>
+                    <span class="badge-live" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">CUSTOMER ACTION CONVERSION: 35%</span>
+                    <span style="font-size: 12px; color: #64748b;">Report ID: eval_rep_1824f5ba</span>
+                </div>
+                <h1 class="title">Intelligent Recovery Orchestrator (IRO)</h1>
+                <p class="subtitle">Controlled Benchmark: Naive Single-Rail Baseline vs Intelligent 7-Phase Multi-Rail Recovery</p>
+            </div>
+        </div>
+        <div style="text-align: right; font-size: 12px; color: #94a3b8;">
+            <div>Evaluated: <strong style="color: #f8fafc;">100 Payments</strong></div>
+            <div>Generated: 2026-09-05T11:32:39 UTC</div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <span style="font-size: 18px;">ℹ️</span>
+        <div>
+            <strong>Synthetic Simulation Assumptions:</strong> Fast Tier ($0.0005/1K in, $0.0015/1K out), Deep Reasoning ($0.010/1K in, $0.030/1K out), USD/INR = 85.0. 
+            All inference cost calculations and ROI multipliers are evaluated strictly as synthetic engineering benchmarks.
+        </div>
+    </div>
+
+    <!-- Top-Level Key Metrics KPI Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-title">Overall Recovery Rate</div>
+            <div class="kpi-value" style="color: #10b981;">57.0%</div>
+            <div class="kpi-delta delta-pos">+25.0% vs Baseline (32.0%)</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Incremental Revenue</div>
+            <div class="kpi-value" style="color: #38bdf8;">+INR 83,412</div>
+            <div class="kpi-delta delta-pos">+56.5% Revenue Lift</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Unsafe Actions Blocked</div>
+            <div class="kpi-value" style="color: #10b981;">24</div>
+            <div class="kpi-delta delta-alert">Baseline: 24 violations | IRO: 0</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Human Escalations</div>
+            <div class="kpi-value">7</div>
+            <div class="kpi-delta delta-neutral">Automated Amount Cap Policies</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Decision Latency</div>
+            <div class="kpi-value">25 ms</div>
+            <div class="kpi-delta delta-neutral">Orchestration Only (Excl. Gateway)</div>
+        </div>
+    </div>
+
+    <!-- Side-by-Side Comparison Matrix -->
+    <div class="section-card">
+        <div class="section-title">
+            <span>Executive Comparison: Naive Single-Rail Baseline vs IRO Architecture</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Evaluation Dimension</th>
+                    <th>Naive Single-Rail Baseline</th>
+                    <th>Intelligent Recovery Orchestrator (IRO)</th>
+                    <th>Performance Lift / Safety Delta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: 600;">Recovery Strategy</td>
+                    <td>Static immediate single retry on original rail</td>
+                    <td>3-Tier Hierarchy (Deterministic -> Heuristic Failover -> Specialist Agent)</td>
+                    <td style="color: #38bdf8; font-weight: 600;">Multi-rail failover & contextual action</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Total Recovered Cases</td>
+                    <td>32 / 100</td>
+                    <td style="color: #10b981; font-weight: 600;">57 / 100</td>
+                    <td style="color: #10b981; font-weight: 600;">+25 Payments</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Recovery Rate (Overall)</td>
+                    <td>32.0%</td>
+                    <td style="color: #10b981; font-weight: 600;">57.0%</td>
+                    <td style="color: #10b981; font-weight: 600;">+25.0% Points (+78.1% relative)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Recovery Rate (Retryable Only)</td>
+                    <td>52.5%</td>
+                    <td style="color: #10b981; font-weight: 600;">88.5%</td>
+                    <td style="color: #10b981; font-weight: 600;">+36.1% Points</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Recovered Revenue</td>
+                    <td>INR 147,657.00</td>
+                    <td style="color: #10b981; font-weight: 600;">INR 231,069.00</td>
+                    <td style="color: #10b981; font-weight: 600;">+INR 83,412.00 (+56.5%)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Financial Policy Boundaries</td>
+                    <td style="color: #f43f5e;">None (Blind execution)</td>
+                    <td style="color: #10b981; font-weight: 600;">2-Stage Guard: Phase 3 Guard + Phase 7 Policy Engine</td>
+                    <td style="color: #10b981; font-weight: 600;">Fail-Closed, Tamper-Evident Hash Chain</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Unsafe Actions Executed</td>
+                    <td style="color: #f43f5e; font-weight: 600;">24 (Double debits & fraud retries)</td>
+                    <td style="color: #10b981; font-weight: 600;">0</td>
+                    <td style="color: #10b981; font-weight: 600;">100% Unsafe Actions Prevented</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">AI Serving Cost (Synthetic)</td>
+                    <td>INR 0.00</td>
+                    <td>INR 28.56 ($0.3360)</td>
+                    <td style="color: #38bdf8; font-weight: 600;">Financial ROI Multiplier: 2,921x</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Segmented Cohorts: Payment Methods & Value Segments -->
+    <div class="grid-2">
+        <div class="section-card">
+            <div class="section-title">Segmented Performance by Payment Method</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Cases</th>
+                        <th>Baseline</th>
+                        <th>IRO</th>
+                        <th>Lift %</th>
+                        <th>Baseline Rev</th>
+                        <th>IRO Rev</th>
+                        <th>Delta Rev</th>
+                        <th>Prevented</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">UPI</td>
+                <td>63</td>
+                <td>22 (34.9%)</td>
+                <td style="color: #10b981; font-weight: 600;">36 (57.1%)</td>
+                <td style="color: #10b981; font-weight: 600;">+22.2%</td>
+                <td>INR 98,025.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 151,209.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 53,184.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">14</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">CREDIT_CARD</td>
+                <td>13</td>
+                <td>6 (46.1%)</td>
+                <td style="color: #10b981; font-weight: 600;">8 (61.5%)</td>
+                <td style="color: #10b981; font-weight: 600;">+15.4%</td>
+                <td>INR 40,038.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 52,249.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 12,211.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">3</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">NETBANKING</td>
+                <td>7</td>
+                <td>1 (14.3%)</td>
+                <td style="color: #10b981; font-weight: 600;">6 (85.7%)</td>
+                <td style="color: #10b981; font-weight: 600;">+71.4%</td>
+                <td>INR 185.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 11,474.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 11,289.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">1</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">DEBIT_CARD</td>
+                <td>17</td>
+                <td>3 (17.6%)</td>
+                <td style="color: #10b981; font-weight: 600;">7 (41.2%)</td>
+                <td style="color: #10b981; font-weight: 600;">+23.5%</td>
+                <td>INR 9,409.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 16,137.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 6,728.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">6</td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">Segmented Performance by Value Tier</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Value Tier</th>
+                        <th>Cases</th>
+                        <th>Baseline</th>
+                        <th>IRO</th>
+                        <th>Lift %</th>
+                        <th>Baseline Rev</th>
+                        <th>IRO Rev</th>
+                        <th>Delta Rev</th>
+                        <th>Prevented</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">STANDARD</td>
+                <td>72</td>
+                <td>28 (38.9%)</td>
+                <td style="color: #10b981; font-weight: 600;">49 (68.1%)</td>
+                <td style="color: #10b981; font-weight: 600;">+29.2%</td>
+                <td>INR 146,368.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 228,845.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 82,477.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">11</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">MICRO</td>
+                <td>21</td>
+                <td>4 (19.1%)</td>
+                <td style="color: #10b981; font-weight: 600;">8 (38.1%)</td>
+                <td style="color: #10b981; font-weight: 600;">+19.1%</td>
+                <td>INR 1,289.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 2,224.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 935.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">6</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">HIGH_VALUE</td>
+                <td>7</td>
+                <td>0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">+0.0%</td>
+                <td>INR 0.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 0.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 0.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">7</td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Failure Categories & Decision Tier Breakdown -->
+    <div class="grid-2">
+        <div class="section-card">
+            <div class="section-title">Segmented Performance by Failure Profile</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Cases</th>
+                        <th>Baseline</th>
+                        <th>IRO</th>
+                        <th>Lift %</th>
+                        <th>Baseline Rev</th>
+                        <th>IRO Rev</th>
+                        <th>Delta Rev</th>
+                        <th>Prevented</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">CUSTOMER_ACTION_REQUIRED</td>
+                <td>12</td>
+                <td>0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">3 (25.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">+25.0%</td>
+                <td>INR 0.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 4,965.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 4,965.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">0</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">TRANSIENT</td>
+                <td>49</td>
+                <td>32 (65.3%)</td>
+                <td style="color: #10b981; font-weight: 600;">32 (65.3%)</td>
+                <td style="color: #10b981; font-weight: 600;">+0.0%</td>
+                <td>INR 147,657.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 147,657.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 0.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">17</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">PERMANENT</td>
+                <td>10</td>
+                <td>0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">+0.0%</td>
+                <td>INR 0.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 0.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 0.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">0</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">ROUTE_DEGRADATION</td>
+                <td>22</td>
+                <td>0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">22 (100.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">+100.0%</td>
+                <td>INR 0.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 78,447.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 78,447.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">0</td>
+            </tr>
+            
+            <tr>
+                <td style="font-weight: 600; color: #f8fafc;">FRAUD</td>
+                <td>7</td>
+                <td>0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">0 (0.0%)</td>
+                <td style="color: #10b981; font-weight: 600;">+0.0%</td>
+                <td>INR 0.00</td>
+                <td style="color: #10b981; font-weight: 600;">INR 0.00</td>
+                <td style="color: #38bdf8; font-weight: 600;">+INR 0.00</td>
+                <td style="color: #f43f5e; font-weight: 600;">7</td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">IRO Decision Layer Distribution</div>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+                Demonstrates the 3-Tier Hierarchy: simple cases resolve deterministically via Tier 1, degraded switches trigger Tier 2 heuristic failovers, and ambiguous anomalies escalate to the bounded Tier 3 Specialist Agent.
+            </p>
+            
+            <div style="margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px;">
+                    <span style="font-weight: 600; color: #e2e8f0;">TIER 1 DETERMINISTIC</span>
+                    <span style="color: #94a3b8;">68 cases (68.0%)</span>
+                </div>
+                <div style="background: #1e293b; border-radius: 4px; height: 10px; overflow: hidden;">
+                    <div style="background: #10b981; width: 68.0%; height: 100%; border-radius: 4px;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px;">
+                    <span style="font-weight: 600; color: #e2e8f0;">TIER 3 SPECIALIST AGENT</span>
+                    <span style="color: #94a3b8;">32 cases (32.0%)</span>
+                </div>
+                <div style="background: #1e293b; border-radius: 4px; height: 10px; overflow: hidden;">
+                    <div style="background: #8b5cf6; width: 32.0%; height: 100%; border-radius: 4px;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid #1e293b; font-size: 12px; color: #94a3b8;">
+                <div>Total Tokens Consumed: <strong style="color: #f8fafc;">20,800</strong> (Prompt: 14,400 | Comp: 6,400)</div>
+                <div>Avg Token Cost Per Payment: <strong style="color: #10b981;">INR 0.2856</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sample Transaction Log -->
+    <div class="section-card">
+        <div class="section-title">
+            <span>Sample Incident Explorer (First 25 Cases)</span>
+            <span style="font-size: 12px; color: #94a3b8;">Authoritative PostgreSQL State & Phase 7 Audit Logs</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Error Code</th>
+                    <th>Strategy Chosen</th>
+                    <th>Tier Used</th>
+                    <th>Outcome</th>
+                    <th>Latency</th>
+                    <th>AI Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">56d829aa...</td>
+                <td style="font-weight: 600;">INR 4,257.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INSUFFICIENT_FUNDS</td>
+                <td>NOTIFY_CUSTOMER_LINK</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>50.7ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">c5abeadc...</td>
+                <td style="font-weight: 600;">INR 2,024.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>17.5ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">38897179...</td>
+                <td style="font-weight: 600;">INR 169.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INSUFFICIENT_FUNDS</td>
+                <td>NOTIFY_CUSTOMER_LINK</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>16.4ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">c934da22...</td>
+                <td style="font-weight: 600;">INR 382.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INSUFFICIENT_FUNDS</td>
+                <td>NOTIFY_CUSTOMER_LINK</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>17.1ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">492bf311...</td>
+                <td style="font-weight: 600;">INR 5,157.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INVALID_VPA</td>
+                <td>TERMINAL_ABANDON</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>16.1ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">11d811fe...</td>
+                <td style="font-weight: 600;">INR 321,240.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(245,158,11,0.2); color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-weight: 600;">ESCALATED</span></td>
+                <td>16.8ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">d7cd946f...</td>
+                <td style="font-weight: 600;">INR 4,127.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>16.9ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">69885547...</td>
+                <td style="font-weight: 600;">INR 99.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">PAYMENT_PENDING</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_3_SPECIALIST_AGENT</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>38.4ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.8925</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">b32ed339...</td>
+                <td style="font-weight: 600;">INR 1,311.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">SWITCH_503_UNAVAILABLE</td>
+                <td>ROUTE_FAILOVER</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_3_SPECIALIST_AGENT</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>30.7ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.8925</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">5132840b...</td>
+                <td style="font-weight: 600;">INR 6,801.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INVALID_VPA</td>
+                <td>TERMINAL_ABANDON</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>16.7ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">66b0f50d...</td>
+                <td style="font-weight: 600;">INR 6,525.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>17.4ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">61257668...</td>
+                <td style="font-weight: 600;">INR 166.00</td>
+                <td>CREDIT_CARD</td>
+                <td style="font-family: monospace; color: #38bdf8;">INSUFFICIENT_FUNDS</td>
+                <td>NOTIFY_CUSTOMER_LINK</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>16.7ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">dc5fca88...</td>
+                <td style="font-weight: 600;">INR 334,216.00</td>
+                <td>NETBANKING</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(245,158,11,0.2); color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-weight: 600;">ESCALATED</span></td>
+                <td>17.4ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">8cae788c...</td>
+                <td style="font-weight: 600;">INR 6,577.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>15.9ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">2a1c7695...</td>
+                <td style="font-weight: 600;">INR 1,769.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>16.3ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">650cd076...</td>
+                <td style="font-weight: 600;">INR 3,277.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">INSUFFICIENT_FUNDS</td>
+                <td>NOTIFY_CUSTOMER_LINK</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>16.8ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">3f363276...</td>
+                <td style="font-weight: 600;">INR 4,198.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">SWITCH_503_UNAVAILABLE</td>
+                <td>ROUTE_FAILOVER</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_3_SPECIALIST_AGENT</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>38.0ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.8925</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">4fe4b57c...</td>
+                <td style="font-weight: 600;">INR 4,352.00</td>
+                <td>DEBIT_CARD</td>
+                <td style="font-family: monospace; color: #38bdf8;">INVALID_VPA</td>
+                <td>TERMINAL_ABANDON</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600;">STOPPED</span></td>
+                <td>15.9ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">55cd291e...</td>
+                <td style="font-weight: 600;">INR 215,162.00</td>
+                <td>DEBIT_CARD</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(245,158,11,0.2); color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-weight: 600;">ESCALATED</span></td>
+                <td>16.0ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">8f7a906b...</td>
+                <td style="font-weight: 600;">INR 5,755.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>16.9ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">d2e26eb6...</td>
+                <td style="font-weight: 600;">INR 8,117.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>17.1ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">7a37fe6d...</td>
+                <td style="font-weight: 600;">INR 9,430.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>16.0ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">1091fef2...</td>
+                <td style="font-weight: 600;">INR 7,143.00</td>
+                <td>CREDIT_CARD</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>17.5ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">8d6455f3...</td>
+                <td style="font-weight: 600;">INR 302.00</td>
+                <td>NETBANKING</td>
+                <td style="font-family: monospace; color: #38bdf8;">SWITCH_503_UNAVAILABLE</td>
+                <td>ROUTE_FAILOVER</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_3_SPECIALIST_AGENT</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>38.2ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.8925</td>
+            </tr>
+            
+            <tr>
+                <td style="font-family: monospace; color: #94a3b8;">51788493...</td>
+                <td style="font-weight: 600;">INR 371.00</td>
+                <td>UPI</td>
+                <td style="font-family: monospace; color: #38bdf8;">GATEWAY_TIMEOUT</td>
+                <td>DETERMINISTIC_RETRY_BACKOFF</td>
+                <td><span style="font-size: 11px; background: #1e293b; padding: 2px 6px; border-radius: 3px;">TIER_1_DETERMINISTIC</span></td>
+                <td><span style="background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 8px; border-radius: 4px; font-weight: 600;">RECOVERED</span></td>
+                <td>16.4ms</td>
+                <td style="font-size: 12px; color: #94a3b8;">INR 0.0000</td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
