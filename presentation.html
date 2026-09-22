@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IRO — Intelligent Recovery Orchestrator | Pitch Presentation Deck</title>
+  <title>IRO — The Autonomous AI Teammate for Payment Operations | Pitch Deck</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
       --bg-dark: #070d1e;
       --card-bg: #0e172e;
       --card-bg-alt: #132247;
-      --card-bg-dark: #0b1124;
+      --card-bg-dark: #0a1124;
       --text-white: #ffffff;
       --text-dim: #94a3b8;
       --text-muted: #64748b;
@@ -43,7 +43,6 @@
       user-select: none;
     }
 
-    /* Fixed Viewport Container */
     #viewport-container {
       position: fixed;
       inset: 0;
@@ -56,7 +55,6 @@
       justify-content: center;
     }
 
-    /* 16:9 Presentation Stage */
     #stage {
       position: absolute;
       width: 1920px;
@@ -66,12 +64,11 @@
       min-height: 1080px;
       max-height: 1080px;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 40%, #0d1733 0%, #070d1e 60%, #03060f 100%);
+      background: radial-gradient(ellipse at 50% 35%, #0d1733 0%, #070d1e 60%, #03060f 100%);
       box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
       transform-origin: center center;
     }
 
-    /* Subtle Grid Accent */
     .bg-grid {
       position: absolute;
       inset: 0;
@@ -84,7 +81,6 @@
       z-index: 1;
     }
 
-    /* Glow Ambient */
     .glow-blob {
       position: absolute;
       border-radius: 50%;
@@ -108,18 +104,17 @@
       background: radial-gradient(circle, rgba(6, 182, 212, 0.35), transparent 70%);
     }
 
-    /* Slide Layer System */
     .slide-wrapper {
       position: absolute;
       inset: 0;
-      padding: 60px 100px;
+      padding: 50px 90px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
       visibility: hidden;
       transform: scale(0.985);
-      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
       z-index: 10;
     }
 
@@ -130,21 +125,20 @@
       z-index: 20;
     }
 
-    /* Top Header */
     .slide-header {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .category-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--cyan-accent);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .category-badge::before {
@@ -158,7 +152,7 @@
     }
 
     .slide-title {
-      font-size: 38px;
+      font-size: 36px;
       font-weight: 800;
       color: var(--text-white);
       letter-spacing: -0.5px;
@@ -167,14 +161,13 @@
     }
 
     .slide-subtitle {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
       color: var(--text-dim);
       line-height: 1.4;
       max-width: 1400px;
     }
 
-    /* Slide Body */
     .slide-body {
       flex: 1;
       display: flex;
@@ -182,9 +175,8 @@
       justify-content: center;
     }
 
-    /* Card System */
     .card {
-      background: rgba(14, 23, 46, 0.85);
+      background: rgba(14, 23, 46, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border-subtle);
@@ -194,21 +186,10 @@
     }
 
     .card-alt {
-      background: rgba(19, 34, 71, 0.85);
+      background: rgba(19, 34, 71, 0.88);
       border-color: var(--border-blue);
     }
 
-    .card-danger {
-      border-color: rgba(239, 68, 68, 0.4);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(239, 68, 68, 0.15);
-    }
-
-    .card-success {
-      border-color: rgba(16, 185, 129, 0.4);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.15);
-    }
-
-    /* Slide 1: Hero Specifics */
     .hero-meta-pill {
       display: inline-flex;
       align-items: center;
@@ -217,12 +198,12 @@
       border-radius: 100px;
       background: rgba(37, 99, 235, 0.15);
       border: 1px solid rgba(37, 99, 235, 0.4);
-      color: var(--blue-light);
+      color: var(--cyan-accent);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       width: fit-content;
     }
 
@@ -230,46 +211,52 @@
       font-size: 64px;
       font-weight: 800;
       letter-spacing: -1.5px;
-      line-height: 1.08;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 40%, #93c5fd 80%, #60a5fa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      color: #fff;
     }
 
-    .hero-desc {
-      font-size: 24px;
-      color: var(--text-dim);
-      line-height: 1.5;
-      max-width: 1300px;
-      margin-bottom: 48px;
+    .hero-subtitle {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue-light);
+      margin-bottom: 12px;
+    }
+
+    .hero-motto {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
     }
 
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-bottom: 30px;
+      gap: 22px;
+      margin-bottom: 20px;
     }
 
     .stat-card {
-      padding: 24px 28px;
+      padding: 20px 24px;
       border-radius: 18px;
       background: rgba(14, 23, 46, 0.9);
       border: 1px solid var(--border-subtle);
     }
 
     .stat-val {
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 800;
       letter-spacing: -1px;
       line-height: 1;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-feature-settings: "tnum";
     }
 
     .stat-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -278,85 +265,40 @@
     }
 
     .stat-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
-    }
-
-    /* Slide 2: 5 Decisions Layout */
-    .problem-layout {
-      display: grid;
-      grid-template-columns: 480px 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .txn-failed-card {
-      padding: 36px 32px;
-      border-radius: 24px;
-      background: radial-gradient(120% 120% at 50% 10%, rgba(25, 15, 25, 0.9) 0%, rgba(14, 23, 46, 0.95) 100%);
-      border: 1.5px solid rgba(239, 68, 68, 0.45);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(239, 68, 68, 0.2);
-    }
-
-    .decisions-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .decision-node {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px;
-      border-radius: 16px;
-      background: rgba(14, 23, 46, 0.85);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .node-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    /* Grid 3-Cards / 2-Columns General Layouts */
-    .three-cols {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
     }
 
     .two-cols {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 36px;
+      gap: 32px;
+    }
+
+    .three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
     }
 
     .five-cols {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
+      gap: 18px;
     }
 
     .list-bullets {
       list-style: none;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .list-bullets li {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-dim);
       line-height: 1.6;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       position: relative;
-      padding-left: 20px;
+      padding-left: 18px;
     }
 
     .list-bullets li::before {
@@ -367,18 +309,17 @@
       font-weight: bold;
     }
 
-    /* Code Snippets & Monospace */
     .mono-pill {
       font-family: 'JetBrains Mono', Consolas, monospace;
-      font-size: 13px;
+      font-size: 12px;
       color: #38bdf8;
       background: rgba(6, 182, 212, 0.1);
-      padding: 4px 10px;
+      padding: 4px 9px;
       border-radius: 6px;
       border: 1px solid rgba(6, 182, 212, 0.25);
+      display: inline-block;
     }
 
-    /* Bottom Status Bar */
     #bottom-bar {
       position: absolute;
       bottom: 0;
@@ -428,18 +369,17 @@
       color: #fff;
     }
 
-    /* Speaker Notes Drawer */
     #notes-drawer {
       position: fixed;
       right: 0;
       top: 0;
       bottom: 54px;
-      width: 440px;
+      width: 460px;
       background: rgba(10, 16, 35, 0.98);
       backdrop-filter: blur(28px);
       border-left: 1px solid var(--blue-vibrant);
       box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
-      padding: 32px 28px;
+      padding: 30px 26px;
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
@@ -455,13 +395,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .notes-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -482,14 +422,13 @@
     .notes-body {
       flex: 1;
       overflow-y: auto;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.7;
       color: #e2e8f0;
       white-space: pre-wrap;
       font-family: inherit;
     }
 
-    /* Progress Indicator */
     #progress-track {
       position: absolute;
       top: 0;
@@ -517,19 +456,25 @@
       <div class="glow-blob glow-cyan"></div>
 
       <!-- ============================================================
-           SLIDE 1: TITLE / HERO SLIDE
+           SLIDE 1: TITLE — AUTONOMOUS AI TEAMMATE
            ============================================================ -->
       <div class="slide-wrapper active" id="slide-1" data-title="Hero Title">
         <div>
           <div class="hero-meta-pill">
-            Razorpay AI Buildathon 2026 • Track 3: AI Revenue Recovery
+            RAZORPAY AI BUILDATHON 2026 • TRACK 3: AUTONOMOUS AI TEAMMATES
           </div>
-          <h1 class="hero-title">
-            Intelligent Recovery<br>Orchestrator (IRO)
-          </h1>
-          <p class="hero-desc">
-            A distributed revenue-recovery system that detects failed payments, safely orchestrates recovery strategies, and knows when AI is worth using.
-          </p>
+          <h1 class="hero-title">IRO</h1>
+          <div class="hero-subtitle">The Autonomous AI Teammate for Payment Operations</div>
+          <div class="hero-motto">Investigate. &nbsp;Reason. &nbsp;Orchestrate. &nbsp;Verify.</div>
+
+          <div class="card card-alt" style="margin-bottom: 24px; padding: 18px 24px; border-color: var(--border-blue);">
+            <div style="font-size: 11px; font-weight: 700; color: var(--blue-light); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
+              Core Teammate Positioning
+            </div>
+            <div style="font-size: 16px; font-style: italic; color: #fff; line-height: 1.5;">
+              “When a payment fails, IRO doesn't just detect the failure. It investigates what happened, reasons about the context, recommends the appropriate recovery path, safely orchestrates the action, and verifies the outcome.”
+            </div>
+          </div>
         </div>
 
         <div>
@@ -537,17 +482,17 @@
             <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.4);">
               <div class="stat-val" style="color: var(--emerald-green);">57.0%</div>
               <div class="stat-label">Recovery Rate</div>
-              <div class="stat-sub">vs 32.0% Naive Baseline (+78.1% lift)</div>
+              <div class="stat-sub">vs 32.0% Baseline (+78% lift)</div>
             </div>
             <div class="stat-card" style="border-color: rgba(96, 165, 250, 0.4);">
               <div class="stat-val" style="color: var(--blue-light);">₹231,069</div>
               <div class="stat-label">Revenue Recovered</div>
-              <div class="stat-sub">+₹83,412 net incremental gain</div>
+              <div class="stat-sub">+₹83,412 net gain</div>
             </div>
             <div class="stat-card" style="border-color: rgba(6, 182, 212, 0.4);">
               <div class="stat-val" style="color: var(--cyan-accent);">0 UNSAFE</div>
               <div class="stat-label">Actions Executed</div>
-              <div class="stat-sub">24 unsafe attempts blocked safely</div>
+              <div class="stat-sub">24 attempts blocked safely</div>
             </div>
             <div class="stat-card" style="border-color: rgba(245, 158, 11, 0.4);">
               <div class="stat-val" style="color: var(--amber-warn);">2,920x</div>
@@ -556,262 +501,54 @@
             </div>
           </div>
 
-          <div style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; padding-top: 10px;">
-            <div>Built by <strong>Om Dapke</strong> • FastAPI + PostgreSQL + Redis Locks + Kafka Architecture</div>
+          <div style="font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
+            <div>Built by <strong>Om Dapke</strong> • github.com/omdapke01/intelligent-recovery-orchestrator</div>
             <div class="mono-pill">120 / 120 PYTEST PASSING</div>
           </div>
         </div>
       </div>
 
       <!-- ============================================================
-           SLIDE 2: THE FUNDAMENTAL INSIGHT (5 RECOVERY DECISIONS)
+           SLIDE 2: PROBLEM STATEMENT
            ============================================================ -->
-      <div class="slide-wrapper" id="slide-2" data-title="The Fundamental Insight">
+      <div class="slide-wrapper" id="slide-2" data-title="Problem Statement">
         <div class="slide-header">
-          <div class="category-badge">01. The Problem Space</div>
-          <h2 class="slide-title">The Fundamental Insight: 1 Failure → 5 Decisions</h2>
-          <p class="slide-subtitle">A failed payment is not necessarily a failed transaction. It is a complex decision problem.</p>
-        </div>
-
-        <div class="slide-body">
-          <div class="problem-layout">
-            <!-- Left Card -->
-            <div class="txn-failed-card">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #94a3b8;">txn_9f3a7c2d</span>
-                <span style="padding: 3px 10px; border-radius: 100px; background: rgba(239,68,68,0.2); color: #fca5a5; font-size: 11px; font-weight: 700;">FAILED</span>
-              </div>
-              <div style="font-size: 12px; font-weight: 700; color: #f87171; letter-spacing: 1px; text-transform: uppercase;">Payment Failed</div>
-              <div style="font-size: 46px; font-weight: 800; color: #fff; margin: 4px 0 16px 0;">₹75,000</div>
-              <div style="font-size: 13px; color: #94a3b8; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px;">
-                Attempt 2 of 3 • Credit Card<br>
-                Error: <code style="color: #f87171;">GATEWAY_TIMEOUT</code><br>
-                Route: <code style="color: #60a5fa;">HDFC_CARDS (Health: 38%)</code>
-              </div>
-              <div style="margin-top: 18px; padding: 10px 14px; border-radius: 10px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); font-size: 12px; color: #fca5a5; line-height: 1.4;">
-                ⚠️ <strong>Naive Action:</strong> Blindly retrying on the same route causes duplicate debits or repetitive failure!
-              </div>
-            </div>
-
-            <!-- Right Grid: 5 Choices -->
-            <div class="decisions-grid">
-              <div class="decision-node" style="border-color: rgba(245, 158, 11, 0.4);">
-                <div class="node-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">1</div>
-                <div>
-                  <div style="font-size: 17px; font-weight: 700; color: #fbbf24; margin-bottom: 2px;">Retry?</div>
-                  <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Try again with backoff</div>
-                  <div style="font-size: 12px; color: #94a3b8;">Transient gateway glitch or socket disconnect.</div>
-                </div>
-              </div>
-
-              <div class="decision-node" style="border-color: rgba(6, 182, 212, 0.4);">
-                <div class="node-badge" style="background: rgba(6, 182, 212, 0.15); color: #38bdf8;">2</div>
-                <div>
-                  <div style="font-size: 17px; font-weight: 700; color: #38bdf8; margin-bottom: 2px;">Switch route?</div>
-                  <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Try alternate payment rail</div>
-                  <div style="font-size: 12px; color: #94a3b8;">Primary rail degraded; divert to healthy banking route.</div>
-                </div>
-              </div>
-
-              <div class="decision-node" style="border-color: rgba(168, 85, 247, 0.4);">
-                <div class="node-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">3</div>
-                <div>
-                  <div style="font-size: 17px; font-weight: 700; color: #c084fc; margin-bottom: 2px;">Ask customer?</div>
-                  <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Interactive recovery link</div>
-                  <div style="font-size: 12px; color: #94a3b8;">Expired 3DS OTP, card limit or balance exhaustion.</div>
-                </div>
-              </div>
-
-              <div class="decision-node" style="border-color: rgba(59, 130, 246, 0.4);">
-                <div class="node-badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">4</div>
-                <div>
-                  <div style="font-size: 17px; font-weight: 700; color: #60a5fa; margin-bottom: 2px;">Wait?</div>
-                  <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Hold for reconciliation</div>
-                  <div style="font-size: 12px; color: #94a3b8;">Gateway timeout: bank may still be capturing in-flight.</div>
-                </div>
-              </div>
-
-              <div class="decision-node" style="grid-column: span 2; border-color: rgba(239, 68, 68, 0.4); background: rgba(19, 25, 48, 0.9);">
-                <div class="node-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">5</div>
-                <div>
-                  <div style="font-size: 17px; font-weight: 700; color: #f87171; margin-bottom: 2px;">STOP?</div>
-                  <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Halt recovery immediately</div>
-                  <div style="font-size: 12px; color: #94a3b8;">Permanent hard decline, fraud stop, or merchant max retry threshold exceeded.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================================
-           SLIDE 3: THE DECISION HIERARCHY
-           ============================================================ -->
-      <div class="slide-wrapper" id="slide-3" data-title="Architecture: Decision Hierarchy">
-        <div class="slide-header">
-          <div class="category-badge">02. Architecture & Hierarchy</div>
-          <h2 class="slide-title">The Decision Hierarchy: AI Proposes, System Decides</h2>
-          <p class="slide-subtitle">Deterministic rules handle what we already understand; AI is introduced strictly when decisions become ambiguous.</p>
-        </div>
-
-        <div class="slide-body">
-          <div class="three-cols" style="margin-bottom: 24px;">
-            <div class="card" style="border-top: 4px solid var(--cyan-accent);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px;">TIER 01</div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 4px 0 10px 0;">Deterministic Engine</h3>
-              <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-                <span class="mono-pill">&lt; 1ms Latency</span>
-                <span class="mono-pill">68% of Cases</span>
-              </div>
-              <ul class="list-bullets">
-                <li>Zero-token static rule evaluation and idempotent cache matching.</li>
-                <li>Directly handles predictable transient errors, rate limits, and hard stops.</li>
-                <li>Provides deterministic latency SLA without external AI dependencies.</li>
-              </ul>
-            </div>
-
-            <div class="card" style="border-top: 4px solid var(--blue-light);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--blue-light); letter-spacing: 1.5px;">TIER 02</div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 4px 0 10px 0;">Model Router & Gateway</h3>
-              <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-                <span class="mono-pill">15ms Latency</span>
-                <span class="mono-pill">Task Classifier</span>
-              </div>
-              <ul class="list-bullets">
-                <li>Detects genuine ambiguity in failure codes and route health degradation.</li>
-                <li>Dynamically selects optimal model (Fast Classifier vs Deep Specialist).</li>
-                <li>Enforces strict structured Pydantic output validation contracts.</li>
-              </ul>
-            </div>
-
-            <div class="card" style="border-top: 4px solid var(--blue-vibrant);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--blue-vibrant); letter-spacing: 1.5px;">TIER 03</div>
-              <h3 style="font-size: 20px; font-weight: 700; margin: 4px 0 10px 0;">Specialist Recovery Agent</h3>
-              <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-                <span class="mono-pill">25ms Latency</span>
-                <span class="mono-pill">32% of Cases</span>
-              </div>
-              <ul class="list-bullets">
-                <li>Multi-step investigation across payment history, attempts & telemetry.</li>
-                <li>Strict READ-ONLY permissions: zero write access to databases or rails.</li>
-                <li>Synthesizes optimal strategy proposal (e.g. route switch + backoff window).</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Bottom Enforcement Guard -->
-          <div class="card card-alt" style="border-left: 5px solid var(--emerald-green); padding: 18px 24px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green); letter-spacing: 1.5px; text-transform: uppercase;">
-                  Mandatory Execution Gate: Deterministic Financial Policy Engine
-                </div>
-                <div style="font-size: 14px; color: var(--text-dim); margin-top: 4px;">
-                  AI recommendations must independently pass all deterministic financial guards: retry caps, merchant SLA recovery windows, customer permissions, and current payment state verification.
-                </div>
-              </div>
-              <div class="mono-pill" style="color: var(--emerald-green); border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1); font-size: 12px;">
-                0 UNSAFE ACTIONS
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================================
-           SLIDE 4: DISTRIBUTED CONCURRENCY & IDEMPOTENCY
-           ============================================================ -->
-      <div class="slide-wrapper" id="slide-4" data-title="Concurrency & Idempotency">
-        <div class="slide-header">
-          <div class="category-badge">03. Distributed Systems Engineering</div>
-          <h2 class="slide-title">The Hard Part Wasn't AI: Concurrency & Idempotency</h2>
-          <p class="slide-subtitle">In an event-driven payment system, duplicate events are inevitable. Duplicate debits are intolerable.</p>
-        </div>
-
-        <div class="slide-body">
-          <div class="two-cols" style="margin-bottom: 24px;">
-            <div class="card" style="border-color: rgba(239, 68, 68, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: #f87171; letter-spacing: 1.5px;">PILLAR 1: CONCURRENCY COORDINATION</div>
-              <h3 style="font-size: 24px; font-weight: 800; margin: 6px 0 4px 0; color: #fff;">Redis Distributed Locks</h3>
-              <div style="font-size: 15px; color: #38bdf8; font-style: italic; margin-bottom: 16px;">
-                Answers: "Who has authorization to work on this payment right now?"
-              </div>
-              <ul class="list-bullets">
-                <li>Prevents competing recovery workers from executing duplicate retries concurrently.</li>
-                <li>Atomic lock acquisition: <code class="mono-pill">SET lock:rec:{payment_id} NX EX 60</code></li>
-                <li>Automatic TTL expiration eliminates deadlocks if a worker node crashes mid-flight.</li>
-                <li>Safe release via Lua script ensures only the owner token can unlock.</li>
-              </ul>
-            </div>
-
-            <div class="card" style="border-color: rgba(6, 182, 212, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px;">PILLAR 2: DURABLE FINALITY</div>
-              <h3 style="font-size: 24px; font-weight: 800; margin: 6px 0 4px 0; color: #fff;">Database Idempotency Barrier</h3>
-              <div style="font-size: 15px; color: #38bdf8; font-style: italic; margin-bottom: 16px;">
-                Answers: "Has this recovery action already occurred or been committed?"
-              </div>
-              <ul class="list-bullets">
-                <li>Provides relational protection against retried, redelivered, or delayed Kafka events.</li>
-                <li>Deterministic key constraint: <code class="mono-pill">UNIQUE(idempotency_key)</code></li>
-                <li>Pre-execution reservation pattern commits pending record before invoking gateway.</li>
-                <li>Guarantees EXACTLY-ONCE financial mutation across network partitions.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card card-alt" style="border-color: rgba(59, 130, 246, 0.5); padding: 18px 24px;">
-            <div style="font-size: 14px; font-weight: 600; color: #fff;">
-              💡 <strong>Key Architectural Rule:</strong> A lock alone does not guarantee idempotency. Distributed Redis locks handle in-flight race conditions; the database idempotency barrier guarantees historical exactly-once execution forever.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============================================================
-           SLIDE 5: DYNAMIC STATE INVERSION & TIMEOUT AMBIGUITY
-           ============================================================ -->
-      <div class="slide-wrapper" id="slide-5" data-title="Dynamic State & Timeouts">
-        <div class="slide-header">
-          <div class="category-badge">04. Financial Safety & Edge Cases</div>
-          <h2 class="slide-title">Dynamic State Inversion & Timeout Ambiguity</h2>
-          <p class="slide-subtitle">Payment recovery is an asynchronous time-travel problem where reality changes while you wait.</p>
+          <div class="category-badge">01. Problem Statement</div>
+          <h2 class="slide-title">A failed payment isn't necessarily a failed transaction.</h2>
+          <p class="slide-subtitle">The hard problem in payment operations isn't detecting failure. It's deciding what to do next — safely.</p>
         </div>
 
         <div class="slide-body">
           <div class="two-cols">
-            <div class="card" style="border-color: rgba(245, 158, 11, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--amber-warn); letter-spacing: 1.5px;">EDGE CASE 1</div>
-              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0; color: #fff;">Dynamic State Inversion</h3>
-              <div style="font-size: 14px; color: #cbd5e1; font-style: italic; margin-bottom: 16px;">
-                Payment succeeds while recovery is waiting in the delayed queue.
+            <!-- Left: Traditional Blind Automation -->
+            <div class="card" style="border-color: rgba(239, 68, 68, 0.4);">
+              <div style="font-size: 12px; font-weight: 700; color: var(--red-danger); letter-spacing: 1.5px;">TRADITIONAL AUTOMATION</div>
+              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0 10px 0; color: #fff;">Blind Immediate Retries</h3>
+              <div class="mono-pill" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1); margin-bottom: 16px;">
+                IF PAYMENT FAILS → RETRY IMMEDIATELY
               </div>
-              <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 16px;">
-                1. $T_0$: Attempt #1 fails on primary rail.<br>
-                2. $T_1$: Recovery orchestrator schedules retry for $T_0 + 60\text{s}$.<br>
-                3. $T_2$: Customer re-opens checkout and pays successfully via UPI!<br>
-                4. $T_3$: Recovery worker wakes up to retry original payment.
-              </div>
-              <div style="padding: 12px; border-radius: 10px; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3); font-size: 13px; color: #fca5a5;">
-                🛡️ <strong>IRO Solution: Authoritative Pre-Execution Revalidation</strong><br>
-                Before executing, IRO queries the source-of-truth payment state. If status == SUCCESS, recovery is stopped immediately with zero action.
-              </div>
+              <ul class="list-bullets">
+                <li><strong>Flawed Assumption:</strong> Blindly assumes all payment failures are transient network blips.</li>
+                <li><strong>Double Debits:</strong> Retrying ambiguous gateway timeouts causes duplicate charges.</li>
+                <li><strong>Rate Limiting & Blocks:</strong> Repeatedly pounding degraded banking rails triggers bank fraud throttles.</li>
+                <li><strong>Customer Churn:</strong> Confusing errors and failed retries push users to abandon checkouts.</li>
+              </ul>
             </div>
 
-            <div class="card" style="border-color: rgba(59, 130, 246, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--blue-light); letter-spacing: 1.5px;">EDGE CASE 2</div>
-              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0; color: #fff;">Gateway Timeout Ambiguity</h3>
-              <div style="font-size: 14px; color: #cbd5e1; font-style: italic; margin-bottom: 16px;">
-                A timeout does NOT mean the payment failed.
+            <!-- Right: IRO Decision Engineering -->
+            <div class="card" style="border-color: rgba(6, 182, 212, 0.4);">
+              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px;">IRO DECISION ENGINEERING</div>
+              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0 10px 0; color: #fff;">Contextual Investigation & Choice</h3>
+              <div class="mono-pill" style="margin-bottom: 16px;">
+                FAILURE → CONTEXT → REASON → POLICY CHECK → SAFE ACTION
               </div>
-              <div style="font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 16px;">
-                1. Acquirer gateway drops connection after 15,000ms.<br>
-                2. Did the customer's bank account get debited? Unknown.<br>
-                3. Did the merchant capture the payment? Unknown.<br>
-                4. Blind retries cause double debits and severe customer complaints.
-              </div>
-              <div style="padding: 12px; border-radius: 10px; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); font-size: 13px; color: #7dd3fc;">
-                🛡️ <strong>IRO Solution: Hold for Reconciliation</strong><br>
-                Classifies timeout as ambiguous in-flight. Case enters a holding state with automated polling against the bank settlement inquiry API before deciding.
+              <div style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">
+                IRO analyzes failure context and routes to 1 of 5 distinct operational strategies:<br>
+                • <strong>Retry?</strong> — Transient gateway glitch with exponential backoff.<br>
+                • <strong>Switch route?</strong> — Primary rail degraded; switch to healthy banking rail.<br>
+                • <strong>Ask customer?</strong> — 3DS OTP expired or balance issue; send recovery link.<br>
+                • <strong>Wait?</strong> — Gateway timeout; hold for bank reconciliation.<br>
+                • <strong>STOP?</strong> — Hard decline, fraud trigger, or merchant limit reached.
               </div>
             </div>
           </div>
@@ -819,101 +556,325 @@
       </div>
 
       <!-- ============================================================
-           SLIDE 6: AI AS INFRASTRUCTURE
+           SLIDE 3: PROPOSED SOLUTION
            ============================================================ -->
-      <div class="slide-wrapper" id="slide-6" data-title="AI as Infrastructure">
+      <div class="slide-wrapper" id="slide-3" data-title="Meet IRO Teammate">
         <div class="slide-header">
-          <div class="category-badge">05. AI Infrastructure & Operations</div>
-          <h2 class="slide-title">AI as Infrastructure: Tiered Routing & L7 Scaling</h2>
-          <p class="slide-subtitle">The goal is not to use more AI. It is to use exactly as much intelligence as the decision requires.</p>
+          <div class="category-badge">02. Proposed Solution</div>
+          <h2 class="slide-title">Meet IRO: The Autonomous AI Teammate for Payment Operations</h2>
+          <p class="slide-subtitle">An AI teammate that investigates ambiguous payment failures, reasons about recovery, and orchestrates safe actions.</p>
         </div>
 
         <div class="slide-body">
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div class="card" style="display: flex; align-items: center; justify-content: space-between; border-left: 6px solid var(--cyan-accent);">
-              <div>
-                <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1px;">LAYER 1: MODEL ROUTER</div>
-                <h4 style="font-size: 18px; font-weight: 700; margin: 2px 0 6px 0;">What tier should handle this recovery?</h4>
-                <p style="font-size: 14px; color: var(--text-dim);">
-                  Routes simple classifications to lightweight models (5ms, $0.0005/1k tokens), reserving deeper reasoning models (25ms) strictly for complex multi-attempt investigations.
-                </p>
-              </div>
-              <div class="mono-pill">TASK-DRIVEN ROUTING</div>
+          <div class="five-cols" style="margin-bottom: 24px;">
+            <div class="card" style="border-top: 4px solid var(--cyan-accent);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--cyan-accent);">STEP 01</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Investigate</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Gathers multi-rail telemetry, previous attempt sequence, customer profile, and merchant SLA.
+              </p>
             </div>
 
-            <div class="card" style="display: flex; align-items: center; justify-content: space-between; border-left: 6px solid var(--blue-light);">
-              <div>
-                <div style="font-size: 12px; font-weight: 700; color: var(--blue-light); letter-spacing: 1px;">LAYER 2: L7 ADAPTIVE LOAD BALANCER</div>
-                <h4 style="font-size: 18px; font-weight: 700; margin: 2px 0 6px 0;">Which healthy instance should receive the request?</h4>
-                <p style="font-size: 14px; color: var(--text-dim);">
-                  Continuous health checking (<code class="mono-pill">HEALTHY</code>, <code class="mono-pill">DEGRADED</code>, <code class="mono-pill">DOWN</code>) with least-connections dispatching across specialist worker containers.
-                </p>
-              </div>
-              <div class="mono-pill">INSTANCE LOAD BALANCER</div>
+            <div class="card" style="border-top: 4px solid var(--blue-light);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-light);">STEP 02</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Reason</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Analyzes route health, failure codes, customer risk tier, and historical payment patterns.
+              </p>
             </div>
 
-            <div class="card" style="display: flex; align-items: center; justify-content: space-between; border-left: 6px solid var(--emerald-green);">
-              <div>
-                <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green); letter-spacing: 1px;">LAYER 3: ZERO-OVERHEAD DETERMINISTIC BYPASS</div>
-                <h4 style="font-size: 18px; font-weight: 700; margin: 2px 0 6px 0;">When should AI be avoided completely?</h4>
-                <p style="font-size: 14px; color: var(--text-dim);">
-                  68% of all recovery traffic bypasses AI entirely. If AI worker pools fail or spike in latency, system gracefully degrades to deterministic rules with zero downtime.
-                </p>
-              </div>
-              <div class="mono-pill">CIRCUIT BREAKER FALLBACK</div>
+            <div class="card" style="border-top: 4px solid var(--blue-vibrant);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-vibrant);">STEP 03</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Recommend</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Synthesizes structured, typed recovery strategy with clear audit rationale (READ-ONLY).
+              </p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid var(--amber-warn);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--amber-warn);">STEP 04</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Orchestrate</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Passes through deterministic financial policy guards, distributed locks, and idempotency barrier.
+              </p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid var(--emerald-green); background: rgba(16, 185, 129, 0.08);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--emerald-green);">STEP 05</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0; color: #fff;">Verify</h4>
+              <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5;">
+                Verifies settlement status with banking rail, updates state machine, and logs immutable audit trail.
+              </p>
+            </div>
+          </div>
+
+          <div class="card card-alt" style="border-left: 5px solid var(--emerald-green); padding: 18px 24px;">
+            <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green); letter-spacing: 1.5px; text-transform: uppercase;">
+              The Autonomous Teammate Principle: AI Proposes, The System Decides
+            </div>
+            <div style="font-size: 15px; font-weight: 600; color: #fff; margin-top: 4px;">
+              “AI has reasoning authority, not financial authority. The AI teammate can think, investigate, and recommend. But deterministic systems decide whether its recommendation is allowed.”
             </div>
           </div>
         </div>
       </div>
 
       <!-- ============================================================
-           SLIDE 7: CASE STUDY (₹75,000 RECOVERY)
+           SLIDE 4: HOW THE AI TEAMMATE WORKS (6 TOOLS)
+           ============================================================ -->
+      <div class="slide-wrapper" id="slide-4" data-title="6 Read-Only Tools">
+        <div class="slide-header">
+          <div class="category-badge">03. Agent Capabilities & Tooling</div>
+          <h2 class="slide-title">How the AI Teammate Works: 6 Bounded Read-Only Tools</h2>
+          <p class="slide-subtitle">The agent investigates payment context with deep precision — but has zero direct write access to move money.</p>
+        </div>
+
+        <div class="slide-body">
+          <div class="three-cols" style="margin-bottom: 22px;">
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent);">TOOL 01</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Payment Context</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_payment_context</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Amount, currency, merchant ID, customer ID, payment method (UPI, Card, Netbanking).
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--blue-light);">TOOL 02</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Payment Attempts</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_payment_attempts</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Sequence of prior attempts, gateway latencies, timestamps, and route history.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--blue-vibrant);">TOOL 03</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Failure History</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_failure_history</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Error taxonomy classification (Timeout, Socket Drop, Balance, Route Degradation).
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--amber-warn);">TOOL 04</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Customer Profile</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_customer_profile</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Customer risk tier, historical payment success rate, and chargeback signals.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--red-danger);">TOOL 05</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Merchant Policy</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_merchant_policy</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Merchant-specific max retry caps, permitted recovery methods, and SLA windows.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green);">TOOL 06</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 2px 0;">Route Health</h4>
+              <code class="mono-pill" style="margin-bottom: 8px;">inspect_route_health</code>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Real-time banking rail health scores (e.g. HDFC 38% vs ICICI 98.4% uptime).
+              </p>
+            </div>
+          </div>
+
+          <div class="card card-alt" style="border-color: var(--cyan-accent); padding: 16px 22px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--cyan-accent); text-transform: uppercase;">
+              🔒 HARD ISOLATION BOUNDARY: ZERO WRITE ACCESS
+            </div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-top: 4px;">
+              The AI teammate operates in a read-only investigation sandbox. It can inspect context and output structured JSON proposals, but cannot directly invoke payment APIs or mutate database states.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 5: USP & SAFETY
+           ============================================================ -->
+      <div class="slide-wrapper" id="slide-5" data-title="USP & Safety">
+        <div class="slide-header">
+          <div class="category-badge">04. Unique Selling Proposition & Safety</div>
+          <h2 class="slide-title">USP: AI Proposes. The System Decides.</h2>
+          <p class="slide-subtitle">AI has reasoning authority, not financial authority. Hard deterministic gates protect every financial mutation.</p>
+        </div>
+
+        <div class="slide-body">
+          <div class="card card-alt" style="margin-bottom: 24px; padding: 22px 28px; border-color: var(--border-blue);">
+            <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px; margin-bottom: 12px;">
+              THE DETERMINISTIC SAFETY BOUNDARY
+            </div>
+            <div style="font-family: 'JetBrains Mono', Consolas, monospace; font-size: 12px; color: #fff; line-height: 1.9;">
+              1. <span style="color: var(--cyan-accent);">AI AGENT REASONING LAYER (READ-ONLY)</span><br>
+              &nbsp;&nbsp;&nbsp;Investigates Context &nbsp;→&nbsp; Evaluates Constraints &nbsp;→&nbsp; Outputs Structured Recommendation<br>
+              &nbsp;&nbsp;&nbsp;<span style="color: var(--blue-light);">═══════════════════════════════════════════════════════════════════════════════════════════════</span><br>
+              &nbsp;&nbsp;&nbsp;<span style="color: var(--emerald-green); font-weight: bold;">MANDATORY SAFETY BOUNDARY: FINANCIAL POLICY ENGINE</span><br>
+              &nbsp;&nbsp;&nbsp;<span style="color: var(--blue-light);">═══════════════════════════════════════════════════════════════════════════════════════════════</span><br>
+              2. <span style="color: #cbd5e1;">DETERMINISTIC AUTHORIZATION & EXECUTION LAYER</span><br>
+              &nbsp;&nbsp;&nbsp;• Policy Gate Check: Validates retry limits, merchant SLA window, and allowed strategies<br>
+              &nbsp;&nbsp;&nbsp;• Pre-Execution Revalidation: Verifies authoritative DB state (halts if already paid)<br>
+              &nbsp;&nbsp;&nbsp;• Redis Distributed Lock: SET NX EX ensures exclusive worker authorization<br>
+              &nbsp;&nbsp;&nbsp;• PostgreSQL Idempotency Barrier: UNIQUE(idempotency_key) guarantees exactly-once execution<br>
+              &nbsp;&nbsp;&nbsp;• Outcome Verification: Reconciles settlement response & appends cryptographic audit trace
+            </div>
+          </div>
+
+          <div class="three-cols">
+            <div class="card">
+              <div style="font-size: 13px; font-weight: 700; color: var(--cyan-accent);">🧠 INTELLIGENCE</div>
+              <div style="font-size: 15px; font-weight: 700; color: #fff; margin: 4px 0;">AI Handles Ambiguity</div>
+              <div style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Synthesizes multi-variable context across rails, merchants, and failure codes.
+              </div>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 13px; font-weight: 700; color: var(--emerald-green);">🛡️ SAFETY</div>
+              <div style="font-size: 15px; font-weight: 700; color: #fff; margin: 4px 0;">Policies Control Money</div>
+              <div style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Deterministic rules independently verify every action. Zero hallucinated debits.
+              </div>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 13px; font-weight: 700; color: var(--blue-light);">⚙️ RELIABILITY</div>
+              <div style="font-size: 15px; font-weight: 700; color: #fff; margin: 4px 0;">Distributed Invariants</div>
+              <div style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Redis locks + DB idempotency eliminate race conditions and duplicate executions.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 6: TECH STACK
+           ============================================================ -->
+      <div class="slide-wrapper" id="slide-6" data-title="Technology Stack">
+        <div class="slide-header">
+          <div class="category-badge">05. Technical Architecture</div>
+          <h2 class="slide-title">Technology Stack: Organized by Responsibility</h2>
+          <p class="slide-subtitle">A production-grade distributed architecture built for low-latency payment operations.</p>
+        </div>
+
+        <div class="slide-body">
+          <div class="three-cols" style="margin-bottom: 22px;">
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--cyan-accent);">EVENT BACKBONE</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">Kafka Event Contracts</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Decoupled asynchronous event ingestion, resilient dead-letter queues.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-light);">APPLICATION CORE</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">Python 3.12 + FastAPI</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                High-performance async ASGI runtime with strict Pydantic v2 validation.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-vibrant);">PERSISTENCE</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">PostgreSQL 16</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                ACID transactional state machine & immutable cryptographic audit ledger.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--amber-warn);">COORDINATION</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">Redis 7 Distributed Locks</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Atomic SET NX EX locks with Lua release; prevents concurrent worker collisions.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--emerald-green);">AI TEAMMATE</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">LLM Gateway + Model Router</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Tiered model routing (5ms Fast Classifier vs 25ms Deep Reasoning Specialist).
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--red-danger);">RELIABILITY & SAFETY</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0;">Policy Engine + FSM</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Deterministic financial policy guards and recovery finite state machines.
+              </p>
+            </div>
+          </div>
+
+          <div class="card card-alt" style="border-color: var(--emerald-green); padding: 16px 22px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--emerald-green);">
+              VERIFIED PRODUCTION CODEBASE: 120 / 120 Pytest Test Suites Passing
+            </div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-top: 4px;">
+              Unit, Integration, FSM, Concurrency, and AI Gateway modules fully verified with zero regressions.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SLIDE 7: REAL SCENARIO
            ============================================================ -->
       <div class="slide-wrapper" id="slide-7" data-title="Case Study: ₹75,000 Recovery">
         <div class="slide-header">
-          <div class="category-badge">06. End-to-End Walkthrough</div>
+          <div class="category-badge">06. Tangible Case Study</div>
           <h2 class="slide-title">Case Study: The ₹75,000 High-Value Recovery</h2>
-          <p class="slide-subtitle">Tracing an ambiguous high-value failure from event ingestion to safe captured revenue.</p>
+          <p class="slide-subtitle">How the AI teammate investigates, reasons, and safely orchestrates a complex rail failover.</p>
         </div>
 
         <div class="slide-body">
           <div class="five-cols">
             <div class="card" style="border-top: 4px solid var(--red-danger);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--red-danger);">STEP 01</div>
-              <h4 style="font-size: 16px; font-weight: 700; margin: 6px 0;">Payment Failure</h4>
-              <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5;">
-                ₹75,000 Credit Card transaction fails attempt #2 on HDFC rail with GATEWAY_ERROR. Rail health drops to 38%.
+              <div style="font-size: 11px; font-weight: 700; color: var(--red-danger);">STEP 01</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Failure Detected</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                ₹75,000 Credit Card transaction fails attempt #2 on HDFC Cards with GATEWAY_ERROR. Rail health drops to 38%.
               </p>
             </div>
 
             <div class="card" style="border-top: 4px solid var(--cyan-accent);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent);">STEP 02</div>
-              <h4 style="font-size: 16px; font-weight: 700; margin: 6px 0;">Read-Only Analysis</h4>
-              <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5;">
-                Ambiguity detected. Specialist agent inspects payment history, route telemetry & merchant policy. ZERO write access.
+              <div style="font-size: 11px; font-weight: 700; color: var(--cyan-accent);">STEP 02</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Teammate Investigates</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                IRO Agent activates. Invokes 6 tools: reads payment context, attempt sequence, route health & merchant SLA.
               </p>
             </div>
 
             <div class="card" style="border-top: 4px solid var(--blue-light);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--blue-light);">STEP 03</div>
-              <h4 style="font-size: 16px; font-weight: 700; margin: 6px 0;">AI Structured Proposal</h4>
-              <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5;">
-                AI discovers ICICI rail has 98.4% health. Recommends <code class="mono-pill">SWITCH_ROUTE</code> to ICICI with 120s backoff.
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-light);">STEP 03</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Reason & Propose</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Agent spots HDFC rail is failing, but ICICI is at 98.4% health. Recommends SWITCH_ROUTE with 120s backoff.
               </p>
             </div>
 
             <div class="card" style="border-top: 4px solid var(--amber-warn);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--amber-warn);">STEP 04</div>
-              <h4 style="font-size: 16px; font-weight: 700; margin: 6px 0;">Financial Policy Gate</h4>
-              <p style="font-size: 13px; color: var(--text-dim); line-height: 1.5;">
-                Policy engine validates: Attempt limit (2 &lt; 3), recovery window valid, route permitted, payment confirmed still failed.
+              <div style="font-size: 11px; font-weight: 700; color: var(--amber-warn);">STEP 04</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0;">Policy Gate Passes</h4>
+              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
+                Financial policy checks: Attempt limit (2 &lt; 3), SLA window valid, route permitted, payment still failed.
               </p>
             </div>
 
-            <div class="card" style="border-top: 4px solid var(--emerald-green); background: rgba(16, 185, 129, 0.12);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green);">STEP 05</div>
-              <h4 style="font-size: 16px; font-weight: 700; margin: 6px 0; color: #fff;">Safe Settlement</h4>
-              <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">
+            <div class="card" style="border-top: 4px solid var(--emerald-green); background: rgba(16, 185, 129, 0.1);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--emerald-green);">STEP 05</div>
+              <h4 style="font-size: 16px; font-weight: 700; margin: 4px 0 8px 0; color: #fff;">Safe Settlement</h4>
+              <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5;">
                 Redis lock acquired, idempotency reserved, payment captured on ICICI rail. <strong>₹75,000 SAVED!</strong>
               </p>
             </div>
@@ -922,166 +883,134 @@
       </div>
 
       <!-- ============================================================
-           SLIDE 8: EMPIRICAL BENCHMARK EVALUATION
+           SLIDE 8: IMPACT & BENEFITS
            ============================================================ -->
-      <div class="slide-wrapper" id="slide-8" data-title="Empirical Evaluation">
+      <div class="slide-wrapper" id="slide-8" data-title="Impact & Benefits">
         <div class="slide-header">
-          <div class="category-badge">07. Empirical Evaluation</div>
-          <h2 class="slide-title">Empirical Benchmark: 100 Synthetic Scenarios</h2>
-          <p class="slide-subtitle">Rigorous head-to-head comparison: IRO vs. Naive Single-Rail Baseline.</p>
+          <div class="category-badge">07. Empirical Results & Validation</div>
+          <h2 class="slide-title">Impact & Benefits: 100-Case Synthetic Benchmark</h2>
+          <p class="slide-subtitle">Rigorous empirical evaluation comparing IRO against a transparent naive single-rail baseline.</p>
         </div>
 
         <div class="slide-body">
-          <div class="stats-row" style="margin-bottom: 24px;">
+          <div class="three-cols" style="margin-bottom: 24px;">
             <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.4);">
-              <div class="stat-label">Overall Recovery Rate</div>
-              <div class="stat-val" style="color: var(--emerald-green); font-size: 36px;">57.0%</div>
+              <div class="stat-label">Recovery Rate</div>
+              <div class="stat-val" style="color: var(--emerald-green); font-size: 42px;">57.0%</div>
               <div class="stat-sub">vs 32.0% Baseline (<strong>+78.1% lift</strong>)</div>
             </div>
 
             <div class="stat-card" style="border-color: rgba(96, 165, 250, 0.4);">
-              <div class="stat-label">Recovered Revenue</div>
-              <div class="stat-val" style="color: var(--blue-light); font-size: 36px;">₹231,069</div>
+              <div class="stat-label">Revenue Recovered</div>
+              <div class="stat-val" style="color: var(--blue-light); font-size: 42px;">₹231,069</div>
               <div class="stat-sub">vs ₹147,657 (<strong>+₹83,412 net gain</strong>)</div>
             </div>
 
             <div class="stat-card" style="border-color: rgba(6, 182, 212, 0.4);">
               <div class="stat-label">Unsafe Actions</div>
-              <div class="stat-val" style="color: var(--cyan-accent); font-size: 36px;">0 EXECUTED</div>
+              <div class="stat-val" style="color: var(--cyan-accent); font-size: 42px;">0 EXECUTED</div>
               <div class="stat-sub">Baseline made 24 unsafe retries</div>
-            </div>
-
-            <div class="stat-card" style="border-color: rgba(245, 158, 11, 0.4);">
-              <div class="stat-label">AI Inference ROI</div>
-              <div class="stat-val" style="color: var(--amber-warn); font-size: 36px;">2,920x</div>
-              <div class="stat-sub">₹28.56 ($0.336) total AI cost</div>
             </div>
           </div>
 
-          <div class="card card-alt" style="margin-bottom: 16px; padding: 20px 24px;">
-            <div style="font-size: 13px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">
-              Workload Breakdown (N = 100 Transactions)
+          <div class="card card-alt" style="margin-bottom: 16px; padding: 20px 26px; border-color: var(--amber-warn);">
+            <div style="font-size: 13px; font-weight: 700; color: var(--amber-warn); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">
+              Workload Distribution & AI Inference ROI
             </div>
-            <div style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-              • <strong>Tier Distribution:</strong> 68 Tier-1 Deterministic cases (0 token overhead) + 32 Tier-3 Specialist Agent dispatches.<br>
-              • <strong>Token Consumption:</strong> 20,800 tokens (14.4k prompt / 6.4k completion) across 32 complex dispatches.<br>
-              • <strong>Safety Invariants:</strong> Zero double debits, zero policy violations, and 24 unsafe simulated attempts blocked.
+            <div style="font-size: 14px; color: #fff; line-height: 1.7;">
+              • <strong>68 Deterministic Cases (Tier 1):</strong> Resolved instantly with ZERO AI token overhead (&lt;1ms).<br>
+              • <strong>32 Specialist Agent Cases (Tier 3):</strong> Deep investigation for genuine multi-variable ambiguity.<br>
+              • <strong>₹28.56 ($0.336 USD) Total AI Cost:</strong> Generated <strong>2,920x ROI</strong> (₹2,920 revenue recovered per ₹1 spent on AI).
             </div>
           </div>
 
           <div style="font-size: 12px; color: var(--text-muted); font-style: italic;">
-            * Evaluated across 100 controlled synthetic payment scenarios with realistic distributions (transient glitches, route degradation, balance stops, auth expires). Not real Razorpay transaction outcomes.
+            * DISCLAIMER: Controlled 100-case synthetic benchmark with realistic distributions. Not real Razorpay production transaction data.
           </div>
         </div>
       </div>
 
       <!-- ============================================================
-           SLIDE 9: CORE LEARNINGS & TAKEAWAYS
+           SLIDE 9: BUSINESS MODEL
            ============================================================ -->
-      <div class="slide-wrapper" id="slide-9" data-title="Core Learnings">
+      <div class="slide-wrapper" id="slide-9" data-title="Business Model">
         <div class="slide-header">
-          <div class="category-badge">08. Key Takeaways</div>
-          <h2 class="slide-title">Core Learnings: Payment Recovery Beyond AI</h2>
-          <p class="slide-subtitle">Payment recovery is fundamentally a systems engineering challenge, and only sometimes an AI challenge.</p>
+          <div class="category-badge">08. Market Opportunity & Monetization</div>
+          <h2 class="slide-title">Business Model: Autonomous Payment Operations</h2>
+          <p class="slide-subtitle">Positioning IRO as enterprise B2B fintech infrastructure for banks, PSPs, and high-volume merchants.</p>
         </div>
 
         <div class="slide-body">
-          <div class="five-cols" style="margin-bottom: 28px;">
+          <div class="three-cols" style="margin-bottom: 22px;">
             <div class="card">
-              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); margin-bottom: 4px;">PILLAR 1</div>
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">A Reliability Problem</h4>
+              <div style="font-size: 11px; font-weight: 700; color: var(--cyan-accent);">1. PLATFORM LICENSE</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 6px 0;">Annual Enterprise Core</h4>
               <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-                FSM state machines, dead-letter recovery queues, and bounded retry intervals.
+                License for core orchestrator, policy engine, dashboard console, and compliance ledger.
               </p>
             </div>
 
             <div class="card">
-              <div style="font-size: 12px; font-weight: 700; color: var(--blue-light); margin-bottom: 4px;">PILLAR 2</div>
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">A Concurrency Problem</h4>
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-light);">2. USAGE-BASED TIERS</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 6px 0;">Per-Operation Pricing</h4>
               <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-                Distributed Redis locking (SET NX EX) and durable relational idempotency barriers.
+                Metered fee per ambiguous recovery case or automated payment operation processed.
               </p>
             </div>
 
             <div class="card">
-              <div style="font-size: 12px; font-weight: 700; color: var(--amber-warn); margin-bottom: 4px;">PILLAR 3</div>
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">A Policy Problem</h4>
+              <div style="font-size: 11px; font-weight: 700; color: var(--blue-vibrant);">3. ENTERPRISE VPC</div>
+              <h4 style="font-size: 17px; font-weight: 700; margin: 4px 0 6px 0;">Private Infrastructure</h4>
               <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-                Deterministic financial policy guards, retry thresholds, and regulatory compliance.
-              </p>
-            </div>
-
-            <div class="card">
-              <div style="font-size: 12px; font-weight: 700; color: var(--red-danger); margin-bottom: 4px;">PILLAR 4</div>
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">A Cost Problem</h4>
-              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-                Right-sized model routing, L7 load balancing, and fast deterministic bypass for 68% of traffic.
-              </p>
-            </div>
-
-            <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green); margin-bottom: 4px;">PILLAR 5</div>
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">And Only Sometimes...</h4>
-              <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">
-                An AI problem. Introduced strictly when recovery decisions become ambiguous.
+                Custom bank gateway integrations, private cloud VPC deployment, dedicated SLA.
               </p>
             </div>
           </div>
 
-          <!-- Hero Quote Card -->
-          <div class="card card-alt" style="text-align: center; padding: 36px 40px; border-color: var(--blue-vibrant);">
-            <div style="font-size: 20px; font-style: italic; color: var(--text-dim); margin-bottom: 8px;">
-              "We didn't build an AI that controls payments."
+          <div class="card card-alt" style="padding: 20px 24px; border-color: var(--border-blue);">
+            <div style="font-size: 13px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">
+              Category Evolution: From Recovery to Full Payment Operations
             </div>
-            <div style="font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">
-              We built a payment recovery system that knows when AI is worth using.
+            <div style="font-size: 13px; color: var(--text-dim); line-height: 1.7;">
+              • <strong>TODAY (Built & Verified):</strong> Failure Investigation &nbsp;→&nbsp; Recovery Orchestration &nbsp;→&nbsp; Outcome Verification<br>
+              • <strong>FUTURE EXPANSION ROADMAP:</strong><br>
+              &nbsp;&nbsp;&nbsp;- Autonomous Reconciliation: Resolves in-flight timeouts & bank pending states without human tickets<br>
+              &nbsp;&nbsp;&nbsp;- Dynamic Route Health Balancing: Preemptively shifts traffic away from failing banking rails<br>
+              &nbsp;&nbsp;&nbsp;- Merchant SLA Guardrails: Automatically tunes retry limits to merchant margin & risk thresholds<br>
+              &nbsp;&nbsp;&nbsp;- Operational Escalation: Human-in-the-loop copilot for regulatory reviews and high-value chargebacks
             </div>
           </div>
         </div>
       </div>
 
       <!-- ============================================================
-           SLIDE 10: CONCLUSION & TECH STACK
+           SLIDE 10: CLOSING
            ============================================================ -->
-      <div class="slide-wrapper" id="slide-10" data-title="Conclusion & Tech Stack">
-        <div class="slide-header">
-          <div class="category-badge">09. Conclusion</div>
-          <h2 class="slide-title">IRO: Production-Grade Revenue Recovery</h2>
-          <p class="slide-subtitle">Full architectural verification, automated test suites, and open-source implementation.</p>
-        </div>
+      <div class="slide-wrapper" id="slide-10" data-title="Closing Vision">
+        <div class="slide-body" style="align-items: center; text-align: center;">
+          <div class="hero-meta-pill" style="margin: 0 auto 24px auto;">
+            RAZORPAY AI BUILDATHON 2026 • TRACK 3: AUTONOMOUS AI TEAMMATES
+          </div>
 
-        <div class="slide-body">
-          <div class="two-cols">
-            <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--emerald-green); letter-spacing: 1.5px;">SYSTEM VERIFICATION</div>
-              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0 16px 0; color: #fff;">Production Invariants</h3>
-              <ul class="list-bullets">
-                <li><strong>120 / 120 Automated Tests Passing</strong> across Unit, Integration, FSM, Concurrency, and AI Gateway suites.</li>
-                <li><strong>Strict Relational Audit Ledger</strong> logging every state transition, lock event, and AI proposal permanently.</li>
-                <li><strong>Zero Code Mutations Needed for Scaling:</strong> Decoupled L7 load balancer handles multi-model worker pools.</li>
-                <li><strong>Production-Grade Benchmark Framework</strong> with empirical batch evaluation supporting 10 to 100,000 transactions.</li>
-              </ul>
+          <div class="card card-alt" style="max-width: 1200px; padding: 50px 60px; border-color: var(--blue-vibrant); margin-bottom: 30px;">
+            <div style="font-size: 26px; font-style: italic; color: var(--text-dim); margin-bottom: 12px;">
+              “AI shouldn't replace payment operations.”
             </div>
+            <div style="font-size: 40px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 24px;">
+              “It should become the teammate that makes them smarter.”
+            </div>
+            <div style="font-family: 'JetBrains Mono', Consolas, monospace; font-size: 18px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 2px;">
+              IRO — The Autonomous AI Teammate for Payment Operations<br>
+              Investigate. &nbsp;Reason. &nbsp;Orchestrate. &nbsp;Verify.
+            </div>
+          </div>
 
-            <div class="card" style="border-color: rgba(59, 130, 246, 0.4);">
-              <div style="font-size: 12px; font-weight: 700; color: var(--cyan-accent); letter-spacing: 1.5px;">TECHNICAL ARCHITECTURE</div>
-              <h3 style="font-size: 22px; font-weight: 800; margin: 6px 0 16px 0; color: #fff;">Core Technology Stack</h3>
-              <div style="font-size: 14px; color: var(--text-dim); line-height: 1.8;">
-                • <strong>Backend:</strong> Python 3.12 • FastAPI • Pydantic v2<br>
-                • <strong>Persistence:</strong> PostgreSQL 16 (AsyncPG / SQLAlchemy 2.0)<br>
-                • <strong>Distributed State:</strong> Redis 7 (Atomic TTL Locks & Keys)<br>
-                • <strong>Event Backbone:</strong> Decoupled Kafka Event Contracts<br>
-                • <strong>AI Layer:</strong> Multi-Tier Router + L7 Adaptive Load Balancer<br>
-                • <strong>Observability:</strong> Real-Time Recovery Dashboard & Telemetry API
-              </div>
-              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">AUTHOR</div>
-                  <div style="font-size: 15px; font-weight: 700; color: #fff;">Om Dapke</div>
-                </div>
-                <div class="mono-pill">github.com/omdapke01</div>
-              </div>
-            </div>
+          <div style="font-size: 14px; color: var(--text-muted); display: flex; gap: 32px; justify-content: center; align-items: center;">
+            <div>Author: <strong>Om Dapke</strong></div>
+            <div>•</div>
+            <div>github.com/omdapke01/intelligent-recovery-orchestrator</div>
+            <div>•</div>
+            <div class="mono-pill">120 / 120 TESTS PASSING</div>
           </div>
         </div>
       </div>
@@ -1132,13 +1061,10 @@
   </div>
 
   <script>
-    /* ============================================================
-       CANVAS SCALING & VIEWPORT CENTERING (1920x1080 Native 16:9)
-       ============================================================ */
     const stage = document.getElementById('stage');
     function resizeStage() {
       const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-      const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - 54; // bottom bar offset
+      const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - 54;
       const scaleX = windowWidth / 1920;
       const scaleY = windowHeight / 1080;
       const scale = Math.min(scaleX, scaleY);
@@ -1151,97 +1077,105 @@
     window.addEventListener('orientationchange', resizeStage);
     resizeStage();
 
-    /* ============================================================
-       SPEAKER NOTES SCRIPT DICTIONARY (Verbatim Pitch Script)
-       ============================================================ */
     const SPEAKER_NOTES = {
-      1: `A failed payment isn't necessarily a failed transaction. It's a decision problem.
+      1: `Welcome everyone. We are presenting IRO — the Autonomous AI Teammate for Payment Operations.
+
+When a payment fails, IRO doesn't just detect the failure. It investigates what happened, reasons about the context, recommends the appropriate recovery path, safely orchestrates the action, and verifies the outcome.
+
+Investigate. Reason. Orchestrate. Verify.
+
+Our goal is not to replace payment operations, but to give payment teams an autonomous teammate that makes them faster, safer, and vastly more profitable.`,
+
+      2: `A failed payment isn't necessarily a failed transaction. It's a decision problem.
 
 Do we retry? Switch the payment route? Ask the customer to take action? Wait for reconciliation? Or stop?
 
-And in payments, the wrong recovery decision can be worse than no recovery at all.
+The hard problem in payment operations isn't detecting failure. It's deciding what to do next — safely.
 
-So we built IRO — the Intelligent Recovery Orchestrator.
+Traditional automation blindly retries, causing double debits and bank fraud blocks. In payments, the wrong recovery decision can be far worse than no recovery at all.
 
-Our first design decision was actually not to use AI everywhere.`,
+IRO investigates the context first, determines the right strategy, checks financial policy, and only then executes safely.`,
 
-      2: `Do we retry? Switch the payment route? Ask the customer to take action? Wait for reconciliation? Or stop?
+      3: `Meet IRO — an autonomous AI teammate for payment operations.
 
-And in payments, the wrong recovery decision can be worse than no recovery at all.
+IRO handles the entire lifecycle of an ambiguous payment failure across five core responsibilities: Investigate, Reason, Recommend, Orchestrate, and Verify.
 
-Most payment failures are predictable. A transient failure doesn't need an AI model deciding whether to retry.
+When an ambiguous failure arrives, the teammate gathers multi-rail telemetry, reasons through the context, and proposes the optimal recovery path.
 
-So IRO uses a decision hierarchy. Deterministic rules handle what we already understand, and AI is introduced only when the recovery decision becomes ambiguous.`,
+Here is our most fundamental architectural principle:
 
-      3: `So IRO uses a decision hierarchy. Deterministic rules handle what we already understand, and AI is introduced only when the recovery decision becomes ambiguous.
+AI has reasoning authority, not financial authority.
+The teammate investigates and proposes, but deterministic systems decide whether any action is permitted.`,
 
-AI proposes. The system decides.
+      4: `How does the AI teammate actually work?
 
-Every AI recommendation passes through deterministic safety guards and a financial policy engine before any recovery action can execute.`,
+We equip the agent with six bounded read-only tools: payment context, attempt history, failure taxonomy, customer profile, merchant policy, and real-time route health telemetry.
 
-      4: `The hard part, however, wasn't just AI. It was everything around it.
+The agent calls these tools to build a multi-dimensional picture of the failure.
 
-First was concurrency.
+It then performs structured reasoning and outputs a typed recovery recommendation.
 
-In an event-driven payment system, the same failure can reach multiple workers. Two workers trying to recover the same payment could potentially create a duplicate financial action.
+Notice what is absent: there are ZERO write tools.
 
-So we use Redis for distributed locking, while the database provides the durable idempotency barrier.
+The agent can investigate and recommend, but cannot directly execute payment actions.`,
 
-In simple terms, Redis answers who can work on this payment now, while the database answers whether this recovery has already happened.`,
+      5: `Our core USP is simple: AI proposes. The system decides.
 
-      5: `The second challenge was that payment state can change while recovery is waiting.
+AI has reasoning authority, not financial authority.
 
-Imagine a payment fails, we schedule a recovery, and then the original payment succeeds.
+When the agent recommends an action, that recommendation must cross a hard safety boundary.
 
-Before execution, IRO revalidates the current payment state. If the payment has already succeeded, the recovery is stopped.
+The financial policy engine independently verifies retry caps, merchant SLAs, and current payment state.
 
-Another difficult case is a timeout.
+Redis distributed locks prevent race conditions between workers, and the database idempotency barrier guarantees exactly-once execution.
 
-A timeout doesn't always mean the payment actually failed. The bank could still be processing it.
+Intelligence handles ambiguity; deterministic systems guarantee safety.`,
 
-Blindly retrying in that situation could create another financial action.
+      6: `Rather than a generic technology logo dump, we organized our tech stack by architectural responsibility.
 
-So instead, IRO can hold the recovery and wait for reconciliation.`,
+Kafka serves as our decoupled event backbone. FastAPI and Python 3.12 provide the async non-blocking application core.
 
-      6: `And finally, once AI becomes part of the architecture, AI itself becomes an infrastructure problem.
+PostgreSQL maintains transactional state and immutable audit traces. Redis coordinates distributed locking to prevent worker race conditions.
 
-We use tiered model routing and an L7 load balancer so that simpler cases can use lightweight inference, while complex cases are routed to deeper reasoning capacity.
+Our AI teammate is served through a tiered model gateway with L7 load balancing.
 
-The goal isn't to use more AI. It's to use exactly as much intelligence as the decision requires.`,
+And our deterministic policy engine enforces hard safety invariants. All validated across 120 automated tests.`,
 
-      7: `Now let's see how this works in an actual recovery case.
+      7: `Now let's see how this works in an actual scenario.
 
-Imagine a seventy-five-thousand-rupee credit card payment that failed because its payment route has degraded, after multiple attempts.
+Imagine a seventy-five-thousand-rupee credit card payment that failed because its payment route degraded after multiple attempts.
 
-This isn't a straightforward retry anymore.
+This isn't a simple retry. IRO detects the ambiguity and sends the case to its investigation layer.
 
-IRO detects the ambiguity and sends the case to its specialist investigation layer.
+The agent inspects the history, previous attempts, route health, and merchant policy.
 
-The agent can inspect the payment history, previous attempts, route health, and merchant recovery policy, but it has no write access to the payment system.
+It discovers the primary route is at 38% health, but an alternate route is at 98%. It recommends switching routes.
 
-Based on that evidence, the AI recommends switching to a healthier payment route.
+The financial policy engine verifies all limits and state. The lock is acquired, idempotency reserved, and the payment is recovered.
 
-But that recommendation is not execution.
+That is the difference between blindly retrying and having an intelligent teammate.`,
 
-The financial policy engine independently checks the retry limits, recovery window, merchant policy, permitted strategy, and current payment state.
+      8: `We evaluated IRO across one hundred controlled synthetic payment scenarios.
 
-Only after those checks pass can execution happen.
+The results speak for themselves: IRO achieved a 57 percent overall recovery rate, compared with 32 percent for the naive baseline.
 
-The concurrency lock is acquired, idempotency is reserved, and the recovery is executed.
+That generated two hundred and thirty-one thousand rupees of recovered revenue, an incremental gain of over eighty-three thousand rupees.
 
-That's the difference between an AI agent acting on a payment and a payment system safely using AI.`,
+And most importantly: IRO executed zero unsafe actions while blocking twenty-four simulated violations.
 
-      8: `We then evaluated IRO across one hundred controlled synthetic payment scenarios.
+Total AI cost: just twenty-eight rupees, representing a 2,920x ROI.`,
 
-IRO achieved a 57 percent overall recovery rate, compared with 32 percent for our transparent naive single-rail baseline.
+      9: `Our business model positions IRO as B2B fintech infrastructure for banks, payment aggregators, and enterprise merchants.
 
-That resulted in two hundred and thirty-one thousand and sixty-nine rupees of simulated recovered revenue, compared with one hundred and forty-seven thousand six hundred and fifty-seven rupees for the baseline.
+It combines an annual platform license with usage-based pricing for recovered volume.
 
-And importantly, IRO executed zero unsafe actions while blocking twenty-four simulated unsafe recovery attempts.
+The value proposition is clear: recovered revenue, reduced operational workload, and zero unsafe automations.
 
-These are synthetic results, not real Razorpay transaction outcomes.`,
+Today, IRO masters payment failure investigation and recovery.
 
-      9: `Our biggest learning from building IRO was that payment recovery isn't just an AI problem.
+Tomorrow, this autonomous teammate can expand into reconciliation, route rebalancing, and operational dispute management.`,
+
+      10: `Our biggest learning from building IRO is that payment operations isn't just an AI problem.
 
 It's a reliability problem.
 A concurrency problem.
@@ -1249,21 +1183,14 @@ A policy problem.
 A cost problem.
 And only sometimes… an AI problem.
 
-We didn't build an AI that controls payments.
-We built a payment recovery system that knows when AI is worth using.
+AI shouldn't replace payment operations. It should become the teammate that makes them smarter.
 
-IRO — Intelligent Recovery Orchestrator.`,
-
-      10: `IRO — Intelligent Recovery Orchestrator.
-
-The system is in charge of the AI, not the AI in charge of the payment system.
+IRO — The Autonomous AI Teammate for Payment Operations.
+Investigate. Reason. Orchestrate. Verify.
 
 Thank you.`
     };
 
-    /* ============================================================
-       SLIDE NAVIGATION CONTROLLER
-       ============================================================ */
     const totalSlides = 10;
     let currentSlide = 1;
     const slides = document.querySelectorAll('.slide-wrapper');
@@ -1300,7 +1227,6 @@ Thank you.`
     document.getElementById('next-btn').addEventListener('click', nextSlide);
     document.getElementById('prev-btn').addEventListener('click', prevSlide);
 
-    // Keyboard Controller
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
@@ -1323,7 +1249,6 @@ Thank you.`
       }
     });
 
-    // Notes Drawer Controller
     function toggleNotes() {
       notesDrawer.classList.toggle('open');
       const btn = document.getElementById('toggle-notes-btn');
@@ -1336,7 +1261,6 @@ Thank you.`
       document.getElementById('toggle-notes-btn').classList.remove('active');
     });
 
-    // Fullscreen Controller
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -1346,7 +1270,6 @@ Thank you.`
     }
     document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
 
-    // Initial Render
     showSlide(1);
   </script>
 </body>
